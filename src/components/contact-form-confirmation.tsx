@@ -16,7 +16,7 @@ export function ContactFormConfirmation({
       ref={containerRef}
       tabIndex={-1}
       aria-live="polite"
-      className="border-y border-black/10 bg-landscape-wash p-8 outline-none sm:p-12"
+      className="border-y border-black/10 bg-landscape-wash p-8 sm:p-12"
     >
       <p className="text-xs font-medium tracking-[0.18em] text-muted uppercase">
         Your note is ready

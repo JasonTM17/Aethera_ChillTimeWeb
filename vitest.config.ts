@@ -10,7 +10,18 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json-summary'],
-      include: ['src/components/**/*.tsx', 'src/hooks/**/*.ts'],
+      include: [
+        'src/components/**/*.tsx',
+        'src/hooks/**/*.ts',
+        'src/pages/**/*.tsx',
+        'src/lib/contact-form.ts',
+      ],
+      thresholds: {
+        statements: 80,
+        branches: 70,
+        functions: 80,
+        lines: 80,
+      },
     },
   },
 })

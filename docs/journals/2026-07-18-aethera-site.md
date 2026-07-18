@@ -8,41 +8,48 @@ session: aethera-five-route-frontend
 **Date**: 2026-07-18 16:08
 **Severity**: Medium
 **Component**: React frontend, cinematic media, routing, contact
-**Status**: Resolved locally; launch pending
+**Status**: Resolved; production deployment Ready
 
 ## What Happened
 
-The assignment grew from a cinematic Home hero into five production routes: `/`, `/studio`, `/about`, `/journal`, and `/reach-us`, plus branded not-found recovery. We kept the expansion reviewable through small local commits for route construction, accessibility, deterministic playback, contact hardening, tests, deployment fallbacks, review decisions, and documentation. Nothing was pushed.
+The Home hero grew into five routes plus branded recovery. Production is live on Vercel; GitHub was not pushed.
 
 ## The Brutal Truth
 
-Scope growth was manageable because it was acknowledged and split up; pretending this was still “just a hero” would have buried routing, accessibility, and deployment risk. The frustrating discovery was subtler: the video looked polished while its timing contract was technically wrong. The review caught it before launch, which was relief earned by measurement, not confidence.
+Calling this “just a hero” buried real accessibility risk. Polished visuals concealed wrong video timing and four integration defects. Fixing them before production was relief earned by measurement, not confidence.
 
 ## Technical Details
 
-The manual loop deliberately has no native `loop`: `requestAnimationFrame` maps the first 0.5 seconds from opacity 0→1 and the final 0.5 seconds from 1→0. On `ended`, opacity becomes 0, a 100ms timeout runs, `currentTime` resets to 0, then playback restarts. Review found a 500ms CSS opacity transition was retargeting every RAF update, making the visible fade lag beyond 0.5 seconds. Removing that transition made RAF the sole interpolator; measured opacity reached 0.5 at 0.25 seconds and 1 at 0.5 seconds.
+RAF owns the manual loop's 0.5s fades; `ended` hides, waits 100ms, seeks to zero, then replays. A 500ms CSS transition retargeted RAF updates and stretched the fade. Removing it restored opacity 0.5 at 0.25s and 1 at 0.5s. Reduced motion omits the roughly 29 MiB MP4 `src` for a 171KB poster; Reach Us creates a bounded `mailto:` draft and stores nothing.
 
-Reduced-motion previously risked preloading the approximately 29 MiB MP4 before JavaScript paused it. It now renders a 171KB WebP poster with no video `src`; normal motion uses `preload="metadata"`. Vercel and Netlify SPA fallbacks return `index.html` for direct deep links. Reach Us validates bounded input and produces a URL-encoded `mailto:` draft; it honestly says the site sends and stores nothing.
+Final gates passed: 34/34 tests across five files, 97.34% statements (257/264), lint, build, and a zero-vulnerability production audit.
 
-Tests grew to 25 passing cases across four files. Coverage reached 96.86% statements, 88.96% branches, 100% functions, and 96.75% lines.
+## Interior Redesign and Production Launch
 
-## Decisions and Rejected Alternatives
+The sparse first fold was self-inflicted: a roughly 92px header plus 80–112px top and 96–128px bottom intro padding; essential copy began at opacity zero, with H1/description delayed 200/400ms. Shallow captures showed header and dead air. We rejected a spacing-only patch. Copy now paints immediately and one Horizon Ledger anchors each page. Studio uses labeled concepts/capabilities; About positioning/manifesto/principles/process; Journal a featured, hash-addressable native-details archive; Reach Us first-note guidance, honest `mailto:`/direct email, next steps, and FAQs.
 
-- Kept manual replay instead of native `loop` to preserve the exact fade/100ms blank interval.
-- Removed CSS opacity interpolation instead of compensating with more timing logic.
-- Suppressed the MP4 source for reduced motion instead of loading then pausing it.
-- Used `mailto:` instead of inventing an unrequested backend or pretending submission succeeded.
-- Added host rewrites instead of accepting routes that work only through in-app navigation.
+Four defects survived: Journal hashes scrolled without opening nested `<details>` (`07bbfd4`); reduced motion was sampled only at mount (`2e9c1d6`); `outline-none` hid contact-confirmation focus (`6dae7c8`); active navigation was color-only (`c78864c`). We kept native semantics and fixed their seams instead of building custom widgets.
+
+Vercel deployment `dpl_6vJKp1qNNGr91MRDz4ExnrUPme6A` is `Ready`. Production QA covered every route, SPA fallback, 375/768/1440px layouts, deep links, live reduced motion, mobile focus, validation, overflow, and an empty console. Three palette-optimized GIFs preserve Home loop (4.82MB), interior tour (1.32MB), and mobile navigation (0.79MB). GitHub still was not pushed.
+
+## What We Tried: Decisions and Rejected Alternatives
+
+- Kept manual replay and removed CSS interpolation instead of using native `loop` or more timing logic.
+- Omitted the MP4 under reduced motion and kept honest `mailto:` behavior instead of load-then-pause or an invented backend.
+- Added host rewrites and distinct routes with a shared Ledger instead of app-only deep links or a cosmetic spacing patch.
+
+## Root Cause Analysis
+
+We optimized one animated template before checking browser geometry and state transitions. That shortcut created dead air and let accessibility failures survive until focused QA.
 
 ## Lessons Learned
 
-Visual plausibility is not timing correctness. Measure computed styles and network requests. Treat reduced motion as a transfer-budget requirement, and test BrowserRouter URLs through the production host, not only the dev server.
+Visual plausibility and green component tests are not production correctness. Test deep-link disclosure, live preferences, focus visibility, non-color state, and direct production URLs.
 
 ## Next Steps
 
-- Site owner: confirm `hello@aethera.studio` is monitored before launch.
-- Release owner: deploy, then smoke-test all five direct URLs, 404 recovery, reduced-motion network behavior, mobile focus, and the real email-draft handoff.
-- Repository owner: push only after those launch checks pass; no push occurred in this session.
+- Establish ownership and verify `hello@aethera.studio` monitoring before advertising email intake.
+- Repository owner: review the completed commits, then push only when explicitly requested.
 
 ## Unresolved Questions
 

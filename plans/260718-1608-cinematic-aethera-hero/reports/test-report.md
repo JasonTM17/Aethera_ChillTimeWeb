@@ -63,6 +63,7 @@
 
 ## Screenshots
 
+- Production Home: [1440px](./production-home-1440.png).
 - Home: [375px](./hero-375.png), [768px](./hero-768.png), [1440px](./hero-1440.png).
 - Studio: [375px](./site-studio-375.png), [1440px full page](./site-studio-1440.png).
 - About: [1440px full page](./site-about-1440.png).
@@ -76,6 +77,15 @@
 - `npm run build`: PASS.
 - `npm audit`: PASS, 0 vulnerabilities.
 - `ck plan validate --strict`: PASS, 0 errors and 0 warnings.
+
+## Production Verification
+
+- Vercel deployment status: `Ready`.
+- Public alias: [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app).
+- HTTP 200 with SPA root: Home, Studio, About, Journal, Reach Us, and `/missing`.
+- Production browser console and page errors: none.
+- Reduced-motion at 375×812: no video source, no MP4 request, poster visible, playback paused.
+- Observed Web Vitals run: TTFB 48.1ms, FCP 196ms, CLS 0. These are one-run observations, not an ongoing performance guarantee.
 
 ## Unresolved Questions
 

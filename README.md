@@ -46,7 +46,7 @@ npm run preview
 npm audit
 ```
 
-Current verified result: 25 tests pass across 4 files. Coverage is 96.84% statements, 88.96% branches, 100% functions, and 96.74% lines.
+Current verified result: 25 tests pass across 4 files. Coverage is 96.86% statements, 88.96% branches, 100% functions, and 96.75% lines.
 
 ## Cinematic Home Behavior
 

@@ -10,10 +10,10 @@
 
 | Metric | Value | Threshold | Status |
 |---|---:|---:|---|
-| Statements | 96.84% | 80% | PASS |
+| Statements | 96.86% | 80% | PASS |
 | Branches | 88.96% | 70% | PASS |
 | Functions | 100% | 80% | PASS |
-| Lines | 96.74% | 80% | PASS |
+| Lines | 96.75% | 80% | PASS |
 
 ## Automated Behavior
 

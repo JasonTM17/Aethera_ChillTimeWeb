@@ -1,0 +1,86 @@
+import { useEffect, useRef, useState } from 'react'
+
+import { heroContent } from '../lib/hero-content'
+
+export function MobileNav() {
+  const [isOpen, setIsOpen] = useState(false)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!isOpen) {
+      return
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false)
+        triggerRef.current?.focus()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen])
+
+  const closeMenu = () => setIsOpen(false)
+
+  return (
+    <>
+      <button
+        ref={triggerRef}
+        type="button"
+        aria-controls="mobile-navigation"
+        aria-expanded={isOpen}
+        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        className="relative z-30 grid size-11 cursor-pointer place-items-center rounded-full border border-black/10 bg-white/65 backdrop-blur-md transition-colors duration-200 hover:bg-white lg:hidden"
+        onClick={() => setIsOpen((current) => !current)}
+      >
+        <span className="sr-only">Toggle navigation</span>
+        <svg
+          aria-hidden="true"
+          className="size-4"
+          fill="none"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d={isOpen ? 'M3 3l10 10M13 3L3 13' : 'M2 5h12M2 11h12'}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="1.4"
+          />
+        </svg>
+      </button>
+
+      {isOpen ? (
+        <div
+          className="fixed inset-0 z-20 bg-white/25 backdrop-blur-[2px] lg:hidden"
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) {
+              closeMenu()
+            }
+          }}
+        >
+          <nav
+            id="mobile-navigation"
+            aria-label="Mobile navigation"
+            className="absolute top-24 right-5 left-5 rounded-3xl border border-black/10 bg-white/85 p-3 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl"
+          >
+            {heroContent.navLinks.map((link, index) => (
+              <a
+                key={link.label}
+                href={link.href}
+                aria-current={index === 0 ? 'page' : undefined}
+                className={`flex min-h-11 items-center rounded-2xl px-4 text-sm transition-colors duration-200 hover:bg-black/5 hover:text-black ${
+                  index === 0 ? 'text-black' : 'text-muted'
+                }`}
+                onClick={closeMenu}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      ) : null}
+    </>
+  )
+}

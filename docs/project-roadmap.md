@@ -9,12 +9,12 @@
 - Honest validated email-draft contact flow.
 - Reduced-motion poster and bandwidth protection.
 - Vercel and Netlify SPA fallbacks.
+- Production deployment on Vercel with direct-route and browser verification.
 - Automated tests, coverage gates, browser QA, code review, and project documentation.
 
 ## Before Public Launch
 
 - Confirm the public contact mailbox.
-- Select a host and run deployed-origin route refresh checks.
 - Validate the MP4 CDN bandwidth/cost policy.
 - Decide whether Google Fonts should be self-hosted.
 

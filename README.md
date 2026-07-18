@@ -69,6 +69,11 @@ The website does not send, upload, or store contact data. Confirm that the confi
 
 ## Deployment
 
+Production is live on Vercel:
+
+- [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app)
+- Project: `aethera-chill-time-web`
+
 Build output is written to `dist/`:
 
 ```bash
@@ -81,7 +86,7 @@ Client-side routes require unknown paths to return `index.html`.
 - Netlify: [`public/_redirects`](./public/_redirects) is copied into the build.
 - Other static hosts: configure an equivalent `/* → /index.html` fallback.
 
-No deployment has been performed by this repository.
+Deploy the linked Vercel project with `vercel --prod`. No runtime environment variables are required.
 
 ## Project Documentation
 
@@ -90,6 +95,7 @@ No deployment has been performed by this repository.
 - [Code standards](./docs/code-standards.md)
 - [System architecture](./docs/system-architecture.md)
 - [Design guidelines](./docs/design-guidelines.md)
+- [Production deployment](./docs/deployment.md)
 - [Deployment guide](./docs/deployment-guide.md)
 - [Project roadmap](./docs/project-roadmap.md)
 

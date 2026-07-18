@@ -1,5 +1,13 @@
 # Deployment Guide
 
+## Production
+
+- Platform: Vercel.
+- Project: `aethera-chill-time-web`.
+- Public URL: [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app).
+- Runtime environment variables: none.
+- Operational record: [`deployment.md`](./deployment.md).
+
 ## Prerequisites
 
 - Node.js 22.22 or newer.
@@ -24,7 +32,11 @@ Every unknown request must return `index.html`, allowing BrowserRouter to resolv
 
 ### Vercel
 
-`vercel.json` rewrites all paths to `/index.html`. Import the repository, keep Vite auto-detection, and use `npm run build` with `dist` output.
+`vercel.json` runs `npm run build`, publishes `dist`, and rewrites all paths to `/index.html`.
+
+```bash
+vercel --prod
+```
 
 ### Netlify
 
@@ -58,8 +70,12 @@ Configure the equivalent fallback in the host or reverse proxy. Confirm direct H
 
 ## Rollback
 
-The output is static. Redeploy the previous known-good Git commit/build artifact. No database or migration rollback is required.
+The output is static and has no database migrations. Promote a previous known-good deployment from the Vercel dashboard or run:
+
+```bash
+vercel rollback <previous-deployment-url>
+```
 
 ## Current Status
 
-The repository contains deployment fallbacks, but no production deployment has been performed or claimed.
+Production deployed and verified on 2026-07-18. All five routes and the branded not-found path return the SPA shell with HTTP 200; browser checks cover desktop, mobile navigation, reduced-motion media suppression, and contact validation.

@@ -10,6 +10,9 @@ function clampOpacity(value: number) {
 export function useCinematicVideoLoop() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [hasVideoError, setHasVideoError] = useState(false)
+  const [prefersReducedMotion] = useState(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
 
   useEffect(() => {
     const video = videoRef.current
@@ -22,10 +25,6 @@ export function useCinematicVideoLoop() {
     let restartTimeoutId: number | undefined
     let isDisposed = false
     let hasFailed = false
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
-
     const setVideoOpacity = (opacity: number) => {
       video.style.opacity = String(clampOpacity(opacity))
     }
@@ -118,7 +117,7 @@ export function useCinematicVideoLoop() {
         window.clearTimeout(restartTimeoutId)
       }
     }
-  }, [])
+  }, [prefersReducedMotion])
 
-  return { videoRef, hasVideoError }
+  return { videoRef, hasVideoError, prefersReducedMotion }
 }

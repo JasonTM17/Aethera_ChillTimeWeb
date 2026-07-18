@@ -26,6 +26,9 @@ describe('Aethera hero', () => {
 
     expect(video).not.toHaveAttribute('loop')
     expect(video).toHaveAttribute('playsinline')
+    expect(video).toHaveAttribute('preload', 'metadata')
+    expect(video).toHaveAttribute('poster', '/aethera-landscape-poster.webp')
+    expect(video).not.toHaveClass('transition-opacity')
     expect(video?.parentElement).toHaveStyle({
       top: '300px',
       right: '0px',

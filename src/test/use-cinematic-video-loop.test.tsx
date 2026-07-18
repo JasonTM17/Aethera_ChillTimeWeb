@@ -94,6 +94,8 @@ describe('useCinematicVideoLoop', () => {
     const video = getVideo()
 
     expect(video).toHaveStyle({ opacity: '1' })
+    expect(video).not.toHaveAttribute('src')
+    expect(video).toHaveAttribute('poster', '/aethera-landscape-poster.webp')
     expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled()
     expect(HTMLMediaElement.prototype.pause).toHaveBeenCalled()
     expect(window.requestAnimationFrame).not.toHaveBeenCalled()
@@ -112,5 +114,16 @@ describe('useCinematicVideoLoop', () => {
       expect(layer).toHaveAttribute('data-video-state', 'fallback')
     })
     expect(video).toHaveStyle({ opacity: '0' })
+  })
+
+  it('keeps the white fallback when the media element emits an error', () => {
+    render(<CinematicVideoLayer />)
+    const video = getVideo()
+
+    fireEvent.error(video)
+
+    expect(video.parentElement).toHaveAttribute('data-video-state', 'fallback')
+    expect(video).toHaveStyle({ opacity: '0' })
+    expect(window.cancelAnimationFrame).toHaveBeenCalled()
   })
 })

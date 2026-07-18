@@ -9,9 +9,9 @@ import { NotFoundPage } from './pages/not-found-page'
 import { ReachUsPage } from './pages/reach-us-page'
 import { StudioPage } from './pages/studio-page'
 
-function App() {
+export function AppRoutes() {
   return (
-    <BrowserRouter>
+    <>
       <RouteEffects />
       <Routes>
         <Route index element={<AetheraHero />} />
@@ -23,6 +23,14 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   )
 }

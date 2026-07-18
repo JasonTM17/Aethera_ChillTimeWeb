@@ -5,6 +5,7 @@ import { siteContent } from '../lib/site-content'
 
 export function MobileNav() {
   const triggerRef = useRef<HTMLButtonElement>(null)
+  const panelRef = useRef<HTMLElement>(null)
   const location = useLocation()
   const [openPathname, setOpenPathname] = useState<string | null>(null)
   const isOpen = openPathname === location.pathname
@@ -18,9 +19,32 @@ export function MobileNav() {
       if (event.key === 'Escape') {
         setOpenPathname(null)
         triggerRef.current?.focus()
+        return
+      }
+
+      if (event.key !== 'Tab') {
+        return
+      }
+
+      const links = panelRef.current?.querySelectorAll<HTMLElement>('a[href]')
+
+      if (!links?.length) {
+        return
+      }
+
+      const firstLink = links[0]
+      const lastLink = links[links.length - 1]
+
+      if (event.shiftKey && document.activeElement === firstLink) {
+        event.preventDefault()
+        lastLink.focus()
+      } else if (!event.shiftKey && document.activeElement === lastLink) {
+        event.preventDefault()
+        firstLink.focus()
       }
     }
 
+    panelRef.current?.querySelector<HTMLElement>('a[href]')?.focus()
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isOpen])
@@ -60,6 +84,9 @@ export function MobileNav() {
 
       {isOpen ? (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
           className="fixed inset-0 z-20 bg-white/25 backdrop-blur-[2px] lg:hidden"
           onPointerDown={(event) => {
             if (event.target === event.currentTarget) {
@@ -68,6 +95,7 @@ export function MobileNav() {
           }}
         >
           <nav
+            ref={panelRef}
             id="mobile-navigation"
             aria-label="Mobile navigation"
             className="absolute top-24 right-5 left-5 rounded-3xl border border-black/10 bg-white/85 p-3 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl"

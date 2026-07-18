@@ -96,8 +96,10 @@ export function ContactForm() {
         />
       </div>
 
-      <label className="mt-6 block text-sm text-black" htmlFor="projectType">
-        What are we exploring?
+      <div className="mt-6">
+        <label className="block text-sm text-black" htmlFor="projectType">
+          What are we exploring?
+        </label>
         <select
           id="projectType"
           name="projectType"
@@ -116,10 +118,12 @@ export function ContactForm() {
           <option value="creative partnership">An ongoing creative partnership</option>
         </select>
         <FieldError id="projectType-error" message={errors.projectType} />
-      </label>
+      </div>
 
-      <label className="mt-6 block text-sm text-black" htmlFor="message">
-        Tell us what is calling you
+      <div className="mt-6">
+        <label className="block text-sm text-black" htmlFor="message">
+          Tell us what is calling you
+        </label>
         <textarea
           id="message"
           name="message"
@@ -131,7 +135,7 @@ export function ContactForm() {
           onChange={() => clearError('message')}
         />
         <FieldError id="message-error" message={errors.message} />
-      </label>
+      </div>
 
       <button
         type="submit"
@@ -157,8 +161,10 @@ type FormFieldProps = {
 
 function FormField({ label, name, type = 'text', error, onChange }: FormFieldProps) {
   return (
-    <label className="block text-sm text-black" htmlFor={name}>
-      {label}
+    <div>
+      <label className="block text-sm text-black" htmlFor={name}>
+        {label}
+      </label>
       <input
         id={name}
         name={name}
@@ -170,7 +176,7 @@ function FormField({ label, name, type = 'text', error, onChange }: FormFieldPro
         onChange={() => onChange(name)}
       />
       <FieldError id={`${name}-error`} message={error} />
-    </label>
+    </div>
   )
 }
 

@@ -12,7 +12,7 @@ export function EditorialPageIntro({
   description,
 }: EditorialPageIntroProps) {
   return (
-    <header className="mx-auto w-full max-w-7xl px-6 pt-20 pb-24 sm:px-8 sm:pt-28 sm:pb-32">
+    <section className="mx-auto w-full max-w-7xl px-6 pt-20 pb-24 sm:px-8 sm:pt-28 sm:pb-32">
       <p className="animate-fade-rise text-xs font-medium tracking-[0.24em] text-muted uppercase">
         {eyebrow}
       </p>
@@ -22,6 +22,6 @@ export function EditorialPageIntro({
       <p className="animate-fade-rise-delay-2 mt-8 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
         {description}
       </p>
-    </header>
+    </section>
   )
 }

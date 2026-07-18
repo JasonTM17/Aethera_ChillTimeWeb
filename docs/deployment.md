@@ -1,12 +1,19 @@
 # Production Deployment
 
-## Platform
+## Current Release
 
-- Provider: Vercel.
-- Project: `aethera-chill-time-web`.
-- Scope: `nguyensonbmt06-6377s-projects`.
-- Production URL: [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app).
-- First verified production deployment: 2026-07-18.
+| Field | Value |
+|---|---|
+| Provider | Vercel |
+| Project | `aethera-chill-time-web` |
+| Scope | `nguyensonbmt06-6377s-projects` |
+| Status | Ready |
+| Deployment ID | `dpl_6vJKp1qNNGr91MRDz4ExnrUPme6A` |
+| Canonical alias | [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app) |
+| Deployment URL | [https://aethera-chill-time-r33ib2qyf-nguyensonbmt06-6377s-projects.vercel.app](https://aethera-chill-time-r33ib2qyf-nguyensonbmt06-6377s-projects.vercel.app) |
+| Created | 2026-07-18 23:03:45 +07:00 |
+
+The canonical alias serves the completed interior redesign. No custom domain is configured.
 
 ## Configuration
 
@@ -18,6 +25,18 @@
 - SPA fallback: every route rewrites to `/index.html`.
 
 No runtime or build-time environment variables are required. The Home experience depends on the configured Google Fonts import and CloudFront video URL being publicly reachable.
+
+## Verified Quality Gates
+
+Verified before deployment on 2026-07-18:
+
+| Check | Result |
+|---|---|
+| Lint | Passed |
+| Vitest coverage run | 5 files passed; 34/34 tests passed |
+| Statement coverage | 97.34% |
+| Production build | TypeScript and Vite build passed |
+| Dependency audit | 0 vulnerabilities |
 
 ## Deploy
 
@@ -39,17 +58,51 @@ vercel link --yes --scope nguyensonbmt06-6377s-projects --project aethera-chill-
 vercel --prod --scope nguyensonbmt06-6377s-projects
 ```
 
-## Verification
+## HTTP Verification
 
-After deployment, verify direct HTTP 200 responses for `/`, `/studio`, `/about`, `/journal`, `/reach-us`, and an unknown path. Browser QA must also confirm:
+The canonical alias returned HTTP 200 for:
 
-- only Home creates the video element;
-- reduced-motion assigns no MP4 source;
-- mobile navigation traps and restores focus;
-- the contact form validates without sending or storing data;
+| Resource | Result |
+|---|---|
+| `/` | Home SPA shell |
+| `/studio` | Direct interior route |
+| `/about` | Direct interior route |
+| `/journal` | Direct interior route |
+| `/reach-us` | Direct interior route |
+| Unknown path | Same SPA shell as `/`; React renders not-found recovery |
+| `/aethera-landscape-poster.webp` | `image/webp` asset |
+
+## Production Browser Verification
+
+Production Chromium QA confirmed:
+
+- no horizontal overflow at 1440px, 768px, or 375px;
+- Home loads the exact CloudFront URL configured in `src/lib/hero-content.ts`, reports a 14.041995-second duration, keeps native `loop` false, and performs the manual opacity fade/reset;
+- initial reduced motion has no `src` or `currentSrc`, and a live switch pauses playback and removes the source;
+- `/journal#designing-for-the-quiet-mind` opens the targeted details element and scrolls it into view;
+- an empty Reach Us submission renders four alerts and focuses `#name`;
+- the mobile dialog shows the active-route marker and restores trigger focus after Escape;
 - console and page errors remain empty.
 
-The first production verification report is stored at [`../plans/260718-1608-cinematic-aethera-hero/reports/deployment-report.md`](../plans/260718-1608-cinematic-aethera-hero/reports/deployment-report.md).
+## Performance Snapshot
+
+One production Chromium navigation recorded:
+
+| Metric | Value |
+|---|---|
+| TTFB | 48.3ms |
+| FCP | 204ms |
+| LCP | 204ms |
+| CLS | 0 |
+
+This is a point-in-time verification snapshot, not a sustained performance baseline or service-level objective.
+
+## Evidence
+
+- [Home cinematic loop](../plans/260718-2200-aethera-interior-experience/reports/home-cinematic-loop.gif)
+- [Interior pages tour](../plans/260718-2200-aethera-interior-experience/reports/interior-pages-tour.gif)
+- [Mobile navigation tour](../plans/260718-2200-aethera-interior-experience/reports/mobile-navigation-tour.gif)
+- [Earlier production baseline report](../plans/260718-1608-cinematic-aethera-hero/reports/deployment-report.md)
 
 ## Custom Domain
 

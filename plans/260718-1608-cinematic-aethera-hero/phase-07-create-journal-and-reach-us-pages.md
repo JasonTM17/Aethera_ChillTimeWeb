@@ -1,8 +1,8 @@
 ---
 phase: 7
-title: "Create Journal and Reach Us pages"
-status: pending
-effort: "3h"
+title: Create Journal and Reach Us pages
+status: completed
+effort: 3h
 ---
 
 # Phase 7: Create Journal and Reach Us pages
@@ -20,7 +20,7 @@ Complete the editorial Journal index and an honest, accessible contact experienc
 
 ## Success Criteria
 
-- [ ] Journal cards have meaningful metadata and navigable article preview anchors.
-- [ ] Reach Us labels every field, validates required input, and announces errors/success.
-- [ ] Contact alternatives remain available without JavaScript form submission.
-- [ ] Both pages pass keyboard and responsive checks.
+- [x] Journal cards have meaningful metadata and navigable article preview anchors.
+- [x] Reach Us labels every field, validates required input, and announces errors/success.
+- [x] Contact alternatives remain available without JavaScript form submission.
+- [x] Both pages pass keyboard and responsive checks.

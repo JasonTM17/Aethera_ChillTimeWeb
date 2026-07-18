@@ -54,17 +54,17 @@ If the video cannot load or autoplay is rejected, retain the reserved media area
 
 ## Visual QA Checklist
 
-- [ ] At 375px, logo, compact header CTA, and 44×44px menu trigger fit without overlap; hero CTA remains visible.
-- [ ] At 768px, nav changes only when space permits; centered hierarchy and line wrapping stay intentional.
-- [ ] At 1440px, all five nav links and header CTA align cleanly; hero does not become too wide.
-- [ ] Copy matches exactly, with no eyebrow/additional text; `silence,` and `the eternal.` alone are italic gray.
-- [ ] `Aethera®` uses a correctly aligned superscript and does not jump during font load.
-- [ ] Video begins at 300px at all three widths, covers without distortion, and causes no layout shift.
-- [ ] Gradient has no hard seam; contrast passes on representative darkest, brightest, and highest-detail frames.
-- [ ] Manual loop visibly performs 0.5s in, 0.5s out, and 100ms restart delay with no flash or duplicate playback.
-- [ ] Reduced-motion shows a stable still with no autoplay/fade loop; video failure leaves a polished usable hero.
-- [ ] Keyboard traversal, Escape/return-focus, hover/pressed states, focus visibility, 44px targets, and touch spacing pass.
-- [ ] Mobile portrait/landscape use safe areas, allow zoom, and show no clipped text or horizontal scroll.
+- [x] At 375px, logo, compact header CTA, and 44×44px menu trigger fit without overlap; hero CTA remains visible.
+- [x] At 768px, nav changes only when space permits; centered hierarchy and line wrapping stay intentional.
+- [x] At 1440px, all five nav links and header CTA align cleanly; hero does not become too wide.
+- [x] Copy matches exactly, with no eyebrow/additional text; `silence,` and `the eternal.` alone are italic gray.
+- [x] `Aethera®` uses a correctly aligned superscript and does not jump during font load.
+- [x] Video begins at 300px at all three widths, covers without distortion, and causes no layout shift.
+- [x] Gradient has no hard seam; contrast passes on representative darkest, brightest, and highest-detail frames.
+- [x] Manual loop visibly performs 0.5s in, 0.5s out, and 100ms restart delay with no flash or duplicate playback.
+- [x] Reduced-motion shows a stable still with no autoplay/fade loop; video failure leaves a polished usable hero.
+- [x] Keyboard traversal, Escape/return-focus, hover/pressed states, focus visibility, 44px targets, and touch spacing pass.
+- [x] Mobile portrait/landscape use safe areas, allow zoom, and show no clipped text or horizontal scroll.
 
 ## Unresolved Questions
 

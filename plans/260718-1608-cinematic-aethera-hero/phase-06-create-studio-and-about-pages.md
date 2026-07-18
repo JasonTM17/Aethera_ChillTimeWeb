@@ -1,8 +1,8 @@
 ---
 phase: 6
-title: "Create Studio and About pages"
-status: pending
-effort: "3h"
+title: Create Studio and About pages
+status: completed
+effort: 3h
 ---
 
 # Phase 6: Create Studio and About pages
@@ -20,7 +20,7 @@ Build two complete editorial pages that demonstrate Aethera's work, approach, pr
 
 ## Success Criteria
 
-- [ ] Studio communicates selected work and services without placeholder copy.
-- [ ] About communicates purpose, principles, and a clear working process.
-- [ ] Both pages are visually distinct but reuse the shared Aethera system.
-- [ ] Layouts remain usable from 320px through wide desktop.
+- [x] Studio communicates selected work and services without placeholder copy.
+- [x] About communicates purpose, principles, and a clear working process.
+- [x] Both pages are visually distinct but reuse the shared Aethera system.
+- [x] Layouts remain usable from 320px through wide desktop.

@@ -1,8 +1,8 @@
 ---
 phase: 8
-title: "Verify complete responsive site"
-status: pending
-effort: "2h"
+title: Verify complete responsive site
+status: completed
+effort: 2h
 ---
 
 # Phase 8: Verify complete responsive site
@@ -20,7 +20,7 @@ Expand automated coverage from the hero to routing, navigation, page content, an
 
 ## Success Criteria
 
-- [ ] Route and form behavior have meaningful assertions.
-- [ ] Lint, tests, coverage, build, and audit pass without suppression.
-- [ ] Browser QA records no horizontal overflow or application console errors.
-- [ ] Final screenshots and test evidence are stored under the plan reports directory.
+- [x] Route and form behavior have meaningful assertions.
+- [x] Lint, tests, coverage, build, and audit pass without suppression.
+- [x] Browser QA records no horizontal overflow or application console errors.
+- [x] Final screenshots and test evidence are stored under the plan reports directory.

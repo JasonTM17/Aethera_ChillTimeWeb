@@ -1,8 +1,8 @@
 ---
 phase: 5
-title: "Build shared routing and site shell"
-status: pending
-effort: "2h"
+title: Build shared routing and site shell
+status: completed
+effort: 2h
 ---
 
 # Phase 5: Build shared routing and site shell
@@ -20,7 +20,7 @@ Introduce client-side routing and a shared layout without changing the approved 
 
 ## Success Criteria
 
-- [ ] All five routes render through the shared application shell.
-- [ ] Desktop and mobile navigation highlight the active route and close correctly.
-- [ ] CTA links lead to Reach Us; Home retains exact requested hero layout and playback.
-- [ ] Unknown URLs render a useful not-found state with a path back Home.
+- [x] All five routes render through the shared application shell.
+- [x] Desktop and mobile navigation highlight the active route and close correctly.
+- [x] CTA links lead to Reach Us; Home retains exact requested hero layout and playback.
+- [x] Unknown URLs render a useful not-found state with a path back Home.

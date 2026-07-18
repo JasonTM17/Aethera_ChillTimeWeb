@@ -1,10 +1,11 @@
 ---
 phase: 2
-title: "Build design foundation"
-status: pending
+title: Build design foundation
+status: completed
 priority: P2
-effort: "1.5h"
-dependencies: [1]
+effort: 1.5h
+dependencies:
+  - 1
 ---
 
 # Phase 2: Build design foundation
@@ -44,10 +45,10 @@ Backward compatibility: still additive only. Keep tokens generic so later sectio
 
 ## Success Criteria
 
-- [ ] `src/styles/fonts.css` and `src/styles/theme.css` are imported exactly once from `src/index.css`.
-- [ ] Requested palette and font families are expressed as reusable tokens, not repeated literals.
-- [ ] Reduced-motion and focus-visible behavior are globally defined before component work starts.
-- [ ] Copy and video URL live in one canonical module.
+- [x] `src/styles/fonts.css` and `src/styles/theme.css` are imported exactly once from `src/index.css`.
+- [x] Requested palette and font families are expressed as reusable tokens, not repeated literals.
+- [x] Reduced-motion and focus-visible behavior are globally defined before component work starts.
+- [x] Copy and video URL live in one canonical module.
 
 ## Risk Assessment
 

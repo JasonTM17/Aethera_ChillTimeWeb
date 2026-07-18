@@ -1,10 +1,11 @@
 ---
 phase: 3
-title: "Implement cinematic hero and video loop"
-status: pending
+title: Implement cinematic hero and video loop
+status: completed
 priority: P2
-effort: "3h"
-dependencies: [2]
+effort: 3h
+dependencies:
+  - 2
 ---
 
 # Phase 3: Implement cinematic hero and video loop
@@ -47,11 +48,11 @@ Backward compatibility: no server API or stored data exists. Keep the page as on
 
 ## Success Criteria
 
-- [ ] The hero fills the viewport and preserves the requested visual hierarchy at 375px, 768px, and 1440px widths.
-- [ ] The video layer uses the exact inset values and never relies on native looping.
-- [ ] Fade-out begins in the final 0.5s and replay waits 100ms after `ended`.
-- [ ] Cleanup cancels RAF work, timeouts, and listeners on unmount.
-- [ ] Reduced-motion and video-failure fallback states keep the hero readable and usable.
+- [x] The hero fills the viewport and preserves the requested visual hierarchy at 375px, 768px, and 1440px widths.
+- [x] The video layer uses the exact inset values and never relies on native looping.
+- [x] Fade-out begins in the final 0.5s and replay waits 100ms after `ended`.
+- [x] Cleanup cancels RAF work, timeouts, and listeners on unmount.
+- [x] Reduced-motion and video-failure fallback states keep the hero readable and usable.
 
 ## Risk Assessment
 

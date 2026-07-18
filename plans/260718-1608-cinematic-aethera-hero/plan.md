@@ -2,8 +2,9 @@
 title: Complete Aethera cinematic studio site
 description: >-
   Ship a five-route Aethera studio website led by a cinematic hero with
-  controlled video replay, editorial content, responsive navigation, and test coverage.
-status: pending
+  controlled video replay, editorial content, responsive navigation, and test
+  coverage.
+status: completed
 priority: P2
 effort: 16h
 branch: ''
@@ -33,30 +34,30 @@ Bootstrap a local Vite React TypeScript app in this non-empty repo, preserve the
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | [Bootstrap Vite and Tailwind](./phase-01-bootstrap-vite-and-tailwind.md) | Pending |
-| 2 | [Build design foundation](./phase-02-build-design-foundation.md) | Pending |
-| 3 | [Implement cinematic hero and video loop](./phase-03-implement-cinematic-hero-and-video-loop.md) | Pending |
-| 4 | [Verify review and document](./phase-04-verify-review-and-document.md) | Pending |
-| 5 | [Build shared routing and site shell](./phase-05-build-shared-routing-and-site-shell.md) | Pending |
-| 6 | [Create Studio and About pages](./phase-06-create-studio-and-about-pages.md) | Pending |
-| 7 | [Create Journal and Reach Us pages](./phase-07-create-journal-and-reach-us-pages.md) | Pending |
-| 8 | [Verify complete responsive site](./phase-08-verify-complete-responsive-site.md) | Pending |
-| 9 | [Review document and finalize](./phase-09-review-document-and-finalize.md) | Pending |
+| 1 | [Bootstrap Vite and Tailwind](./phase-01-bootstrap-vite-and-tailwind.md) | Completed |
+| 2 | [Build design foundation](./phase-02-build-design-foundation.md) | Completed |
+| 3 | [Implement cinematic hero and video loop](./phase-03-implement-cinematic-hero-and-video-loop.md) | Completed |
+| 4 | [Verify review and document](./phase-04-verify-review-and-document.md) | Completed |
+| 5 | [Build shared routing and site shell](./phase-05-build-shared-routing-and-site-shell.md) | Completed |
+| 6 | [Create Studio and About pages](./phase-06-create-studio-and-about-pages.md) | Completed |
+| 7 | [Create Journal and Reach Us pages](./phase-07-create-journal-and-reach-us-pages.md) | Completed |
+| 8 | [Verify complete responsive site](./phase-08-verify-complete-responsive-site.md) | Completed |
+| 9 | [Review document and finalize](./phase-09-review-document-and-finalize.md) | Completed |
 
 ## Dependencies
 
-- External: Node 20.19+ for current Vite, npm, reachable MP4 URL, and font CDN unless fonts are later vendored.
+- External: Node 22.22+ for React Router 8, npm, reachable MP4 URL, and font CDN unless fonts are later vendored.
 - Internal: P2 depends on P1; P3 depends on P2; P4 verifies the hero milestone; P5 establishes routes; P6-P7 depend on P5; P8-P9 validate and finalize the complete site.
 
 ## Acceptance Criteria
 
-- [ ] Fullscreen Home hero ships with requested palette, fonts, responsive sizing, overlay, copy, and visual hierarchy.
-- [ ] Video layer uses `top: 300px; right: 0; bottom: 0; left: 0`, no native loop, 0.5s fade in/out, and 100ms restart delay after `ended`.
-- [ ] Reduced-motion, focus-visible, mobile nav, and video-failure fallback work without changing hierarchy.
-- [ ] Home, Studio, About, Journal, and Reach Us have real routes, route-aware navigation, responsive layouts, and cohesive editorial content.
-- [ ] Reach Us validates required fields, reports submission state accessibly, and never pretends to send data to an unconfigured backend.
-- [ ] `npm run build`, lint, Vitest + RTL coverage pass; browser/manual checks cover every route and 375/768/1440 breakpoints.
-- [ ] Local git exists with small conventional commits and no remote push.
+- [x] Fullscreen Home hero ships with requested palette, fonts, responsive sizing, overlay, copy, and visual hierarchy.
+- [x] Video layer uses `top: 300px; right: 0; bottom: 0; left: 0`, no native loop, 0.5s fade in/out, and 100ms restart delay after `ended`.
+- [x] Reduced-motion, focus-visible, mobile nav, and video-failure fallback work without changing hierarchy.
+- [x] Home, Studio, About, Journal, and Reach Us have real routes, route-aware navigation, responsive layouts, and cohesive editorial content.
+- [x] Reach Us validates required fields, reports submission state accessibly, and never pretends to send data to an unconfigured backend.
+- [x] `npm run build`, lint, Vitest + RTL coverage pass; browser/manual checks cover every route and 375/768/1440 breakpoints.
+- [x] Local git exists with small conventional commits; the user-approved `origin` is configured and no push was performed.
 
 ## Commit Boundaries
 

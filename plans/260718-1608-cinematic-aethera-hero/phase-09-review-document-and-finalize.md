@@ -1,8 +1,8 @@
 ---
 phase: 9
-title: "Review document and finalize"
-status: pending
-effort: "2h"
+title: Review document and finalize
+status: completed
+effort: 2h
 ---
 
 # Phase 9: Review document and finalize
@@ -20,7 +20,7 @@ Perform an adversarial code review, fix evidence-backed findings, document local
 
 ## Success Criteria
 
-- [ ] Review report has no unresolved Critical or High findings.
-- [ ] README claims match verified code and commands.
-- [ ] CK plan validates and all completed phases are synchronized.
-- [ ] Final Git history is focused, conventional, and excludes control files.
+- [x] Review report has no unresolved Critical or High findings.
+- [x] README claims match verified code and commands.
+- [x] CK plan validates and all completed phases are synchronized.
+- [x] Final Git history is focused, conventional, and excludes control files.

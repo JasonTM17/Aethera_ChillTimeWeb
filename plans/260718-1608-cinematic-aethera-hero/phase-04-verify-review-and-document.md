@@ -1,10 +1,11 @@
 ---
 phase: 4
-title: "Verify review and document"
-status: pending
+title: Verify review and document
+status: completed
 priority: P2
-effort: "2h"
-dependencies: [3]
+effort: 2h
+dependencies:
+  - 3
 ---
 
 # Phase 4: Verify review and document
@@ -46,10 +47,10 @@ Backward compatibility: still additive only. Keep test-only helpers out of produ
 
 ## Success Criteria
 
-- [ ] Automated tests prove replay timing, cleanup, restart, and fallback behavior.
-- [ ] `npm run test:run` and `npm run build` pass cleanly.
-- [ ] Manual responsive checks complete at 375px, 768px, and 1440px.
-- [ ] `README.md` exists with validated install, run, and test commands plus motion and fallback notes.
+- [x] Automated tests prove replay timing, cleanup, restart, and fallback behavior.
+- [x] `npm run test:run` and `npm run build` pass cleanly.
+- [x] Manual responsive checks complete at 375px, 768px, and 1440px.
+- [x] `README.md` exists with validated install, run, and test commands plus motion and fallback notes.
 
 ## Test Matrix
 

@@ -1,9 +1,9 @@
 ---
 phase: 1
-title: "Bootstrap Vite and Tailwind"
-status: pending
+title: Bootstrap Vite and Tailwind
+status: completed
 priority: P2
-effort: "1.5h"
+effort: 1.5h
 dependencies: []
 ---
 
@@ -44,10 +44,10 @@ Backward compatibility: repo has no existing runtime contract, so bootstrap is a
 
 ## Success Criteria
 
-- [ ] `npm install` and `npm run build` succeed from repo root.
-- [ ] No scaffold step overwrites `AGENTS.md`, `CLAUDE.md`, or `plans/`.
-- [ ] Tailwind utilities compile from `src/index.css`.
-- [ ] Git exists locally with one bootstrap commit and no remote configured.
+- [x] `npm install` and `npm run build` succeed from repo root.
+- [x] No scaffold step overwrites `AGENTS.md`, `CLAUDE.md`, or `plans/`.
+- [x] Tailwind utilities compile from `src/index.css`.
+- [x] Git exists locally; `origin` was added only after the user's explicit request and no push was performed.
 
 ## Risk Assessment
 

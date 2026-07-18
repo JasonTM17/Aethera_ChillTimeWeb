@@ -1,17 +1,4 @@
 export const heroContent = {
-  brand: 'Aethera',
-  trademark: '®',
-  navLinks: [
-    { label: 'Home', href: '#hero' },
-    { label: 'Studio', href: '#studio' },
-    { label: 'About', href: '#about' },
-    { label: 'Journal', href: '#journal' },
-    { label: 'Reach Us', href: '#reach-us' },
-  ],
-  cta: {
-    label: 'Begin Journey',
-    href: '#journey',
-  },
   headline: {
     opening: 'Beyond ',
     silence: 'silence,',

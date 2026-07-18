@@ -1,4 +1,6 @@
-import { heroContent } from '../lib/hero-content'
+import { Link, NavLink } from 'react-router'
+
+import { siteContent } from '../lib/site-content'
 import { MobileNav } from './mobile-nav'
 
 const ctaClasses =
@@ -7,41 +9,49 @@ const ctaClasses =
 export function SiteHeader() {
   return (
     <header className="relative z-10 px-5 py-6 sm:px-8">
+      <a
+        href="#main-content"
+        className="fixed top-3 left-3 z-50 -translate-y-24 rounded-full bg-black px-5 py-3 text-sm text-white transition-transform focus:translate-y-0"
+      >
+        Skip to content
+      </a>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
-        <a
-          href="#hero"
+        <Link
+          to="/"
           aria-label="Aethera home"
           className="shrink-0 font-display text-3xl leading-none tracking-tight text-black"
         >
-          {heroContent.brand}
+          {siteContent.brand}
           <sup className="ml-0.5 align-super text-[0.34em] leading-none">
-            {heroContent.trademark}
+            {siteContent.trademark}
           </sup>
-        </a>
+        </Link>
 
         <nav
           aria-label="Primary navigation"
           className="hidden items-center gap-8 lg:flex"
         >
-          {heroContent.navLinks.map((link, index) => (
-            <a
-              key={link.label}
-              href={link.href}
-              aria-current={index === 0 ? 'page' : undefined}
-              className={`min-h-11 content-center text-sm transition-colors duration-200 hover:text-black ${
-                index === 0 ? 'text-black' : 'text-muted'
-              }`}
+          {siteContent.navigation.map((item) => (
+            <NavLink
+              key={item.href}
+              to={item.href}
+              end={item.href === '/'}
+              className={({ isActive }) =>
+                `min-h-11 content-center text-sm transition-colors duration-200 hover:text-black ${
+                  isActive ? 'text-black' : 'text-muted'
+                }`
+              }
             >
-              {link.label}
-            </a>
+              {item.label}
+            </NavLink>
           ))}
         </nav>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <MobileNav />
-          <a className={ctaClasses} href={heroContent.cta.href}>
-            {heroContent.cta.label}
-          </a>
+          <Link className={ctaClasses} to={siteContent.cta.href}>
+            {siteContent.cta.label}
+          </Link>
         </div>
       </div>
     </header>

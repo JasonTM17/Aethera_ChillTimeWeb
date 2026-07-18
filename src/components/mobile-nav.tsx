@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { NavLink, useLocation } from 'react-router'
 
-import { heroContent } from '../lib/hero-content'
+import { siteContent } from '../lib/site-content'
 
 export function MobileNav() {
-  const [isOpen, setIsOpen] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
+  const location = useLocation()
+  const [openPathname, setOpenPathname] = useState<string | null>(null)
+  const isOpen = openPathname === location.pathname
 
   useEffect(() => {
     if (!isOpen) {
@@ -13,7 +16,7 @@ export function MobileNav() {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setIsOpen(false)
+        setOpenPathname(null)
         triggerRef.current?.focus()
       }
     }
@@ -22,7 +25,7 @@ export function MobileNav() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isOpen])
 
-  const closeMenu = () => setIsOpen(false)
+  const closeMenu = () => setOpenPathname(null)
 
   return (
     <>
@@ -33,7 +36,11 @@ export function MobileNav() {
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
         className="relative z-30 grid size-11 cursor-pointer place-items-center rounded-full border border-black/10 bg-white/65 backdrop-blur-md transition-colors duration-200 hover:bg-white lg:hidden"
-        onClick={() => setIsOpen((current) => !current)}
+        onClick={() =>
+          setOpenPathname((current) =>
+            current === location.pathname ? null : location.pathname,
+          )
+        }
       >
         <span className="sr-only">Toggle navigation</span>
         <svg
@@ -65,18 +72,20 @@ export function MobileNav() {
             aria-label="Mobile navigation"
             className="absolute top-24 right-5 left-5 rounded-3xl border border-black/10 bg-white/85 p-3 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl"
           >
-            {heroContent.navLinks.map((link, index) => (
-              <a
-                key={link.label}
-                href={link.href}
-                aria-current={index === 0 ? 'page' : undefined}
-                className={`flex min-h-11 items-center rounded-2xl px-4 text-sm transition-colors duration-200 hover:bg-black/5 hover:text-black ${
-                  index === 0 ? 'text-black' : 'text-muted'
-                }`}
+            {siteContent.navigation.map((item) => (
+              <NavLink
+                key={item.href}
+                to={item.href}
+                end={item.href === '/'}
+                className={({ isActive }) =>
+                  `flex min-h-11 items-center rounded-2xl px-4 text-sm transition-colors duration-200 hover:bg-black/5 hover:text-black ${
+                    isActive ? 'text-black' : 'text-muted'
+                  }`
+                }
                 onClick={closeMenu}
               >
-                {link.label}
-              </a>
+                {item.label}
+              </NavLink>
             ))}
           </nav>
         </div>

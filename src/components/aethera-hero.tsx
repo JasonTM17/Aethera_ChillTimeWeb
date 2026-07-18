@@ -1,4 +1,7 @@
+import { Link } from 'react-router'
+
 import { heroContent } from '../lib/hero-content'
+import { siteContent } from '../lib/site-content'
 import { CinematicVideoLayer } from './cinematic-video-layer'
 import { SiteHeader } from './site-header'
 
@@ -12,7 +15,7 @@ export function AetheraHero() {
       <SiteHeader />
 
       <main
-        id="journey"
+        id="main-content"
         className="relative z-10 flex flex-col items-center justify-center px-6 pb-40 text-center"
         style={{ paddingTop: 'calc(8rem - 75px)' }}
       >
@@ -27,12 +30,12 @@ export function AetheraHero() {
           {heroContent.description}
         </p>
 
-        <a
-          href={heroContent.cta.href}
+        <Link
+          to={siteContent.cta.href}
           className="animate-fade-rise-delay-2 mt-12 inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-black px-14 py-5 text-base text-white transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[0.99]"
         >
-          {heroContent.cta.label}
-        </a>
+          {siteContent.cta.label}
+        </Link>
       </main>
     </div>
   )

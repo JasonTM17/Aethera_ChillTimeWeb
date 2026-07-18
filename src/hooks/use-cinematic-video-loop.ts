@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 const FADE_DURATION_SECONDS = 0.5
 const RESTART_DELAY_MS = 100
@@ -9,10 +9,21 @@ function clampOpacity(value: number) {
 
 export function useCinematicVideoLoop() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [hasVideoError, setHasVideoError] = useState(false)
-  const [prefersReducedMotion] = useState(
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  const mediaQuery = useMemo(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)'),
+    [],
   )
+  const [hasVideoError, setHasVideoError] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => mediaQuery.matches)
+
+  useEffect(() => {
+    const handlePreferenceChange = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches)
+    }
+
+    mediaQuery.addEventListener('change', handlePreferenceChange)
+    return () => mediaQuery.removeEventListener('change', handlePreferenceChange)
+  }, [mediaQuery])
 
   useEffect(() => {
     const video = videoRef.current

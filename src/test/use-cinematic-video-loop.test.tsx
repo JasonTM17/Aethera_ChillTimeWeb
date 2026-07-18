@@ -101,6 +101,34 @@ describe('useCinematicVideoLoop', () => {
     expect(window.requestAnimationFrame).not.toHaveBeenCalled()
   })
 
+  it('updates the video mode when the motion preference changes', () => {
+    let changeHandler: ((event: MediaQueryListEvent) => void) | undefined
+    const mediaQuery = {
+      matches: false,
+      media: '(prefers-reduced-motion: reduce)',
+      onchange: null,
+      addEventListener: vi.fn((_type: string, listener: EventListener) => {
+        changeHandler = listener as unknown as (event: MediaQueryListEvent) => void
+      }),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    } as unknown as MediaQueryList
+    vi.mocked(window.matchMedia).mockReturnValue(mediaQuery)
+
+    render(<CinematicVideoLayer />)
+    const video = getVideo()
+
+    act(() => changeHandler?.({ matches: true } as MediaQueryListEvent))
+    expect(video).not.toHaveAttribute('src')
+    expect(video.parentElement).toHaveAttribute('data-video-state', 'reduced-motion')
+
+    act(() => changeHandler?.({ matches: false } as MediaQueryListEvent))
+    expect(video).toHaveAttribute('src')
+    expect(video.parentElement).toHaveAttribute('data-video-state', 'active')
+  })
+
   it('keeps the white fallback when playback rejects', async () => {
     vi.mocked(HTMLMediaElement.prototype.play).mockRejectedValue(
       new Error('Autoplay blocked'),

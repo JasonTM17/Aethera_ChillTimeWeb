@@ -1,16 +1,3 @@
+@import "./styles/fonts.css";
 @import "tailwindcss";
-
-html {
-  background: #ffffff;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100dvh;
-}
-
-button,
-a {
-  font: inherit;
-}
+@import "./styles/theme.css";

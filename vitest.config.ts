@@ -11,6 +11,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json-summary'],
       include: [
+        'src/App.tsx',
         'src/components/**/*.tsx',
         'src/hooks/**/*.ts',
         'src/pages/**/*.tsx',

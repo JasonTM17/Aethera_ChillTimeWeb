@@ -6,6 +6,7 @@ import {
   validateContact,
   type ContactErrors,
   type ContactField,
+  contactLimits,
 } from '../lib/contact-form'
 
 const inputClasses =
@@ -13,11 +14,16 @@ const inputClasses =
 
 export function ContactForm() {
   const confirmationRef = useRef<HTMLDivElement>(null)
+  const shouldFocusForm = useRef(false)
   const [errors, setErrors] = useState<ContactErrors>({})
   const [draftHref, setDraftHref] = useState<string | null>(null)
 
   useEffect(() => {
     if (draftHref) confirmationRef.current?.focus()
+    if (!draftHref && shouldFocusForm.current) {
+      shouldFocusForm.current = false
+      document.getElementById('name')?.focus()
+    }
   }, [draftHref])
 
   const clearError = (field: ContactField) => {
@@ -74,7 +80,10 @@ export function ContactForm() {
           <button
             type="button"
             className="min-h-14 cursor-pointer rounded-full border border-black/15 px-8 text-sm text-black transition-colors hover:bg-black/5"
-            onClick={() => setDraftHref(null)}
+            onClick={() => {
+              shouldFocusForm.current = true
+              setDraftHref(null)
+            }}
           >
             Start Over
           </button>
@@ -128,6 +137,7 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={6}
+          maxLength={contactLimits.message}
           placeholder="The idea, the tension, the change you hope to make…"
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? 'message-error' : undefined}
@@ -170,6 +180,7 @@ function FormField({ label, name, type = 'text', error, onChange }: FormFieldPro
         name={name}
         type={type}
         autoComplete={name}
+        maxLength={contactLimits[name]}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         className={inputClasses}

@@ -9,6 +9,14 @@ const pageTitles: Record<string, string> = {
   '/reach-us': 'Reach Us — Aethera',
 }
 
+function getHashTargetId(hash: string) {
+  try {
+    return decodeURIComponent(hash.slice(1))
+  } catch {
+    return null
+  }
+}
+
 export function RouteEffects() {
   const { pathname, hash } = useLocation()
   const previousPathname = useRef(pathname)
@@ -24,7 +32,8 @@ export function RouteEffects() {
       }
 
       if (hash) {
-        document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView()
+        const targetId = getHashTargetId(hash)
+        if (targetId) document.getElementById(targetId)?.scrollIntoView()
       } else if (routeChanged && window.scrollY !== 0) {
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
       }

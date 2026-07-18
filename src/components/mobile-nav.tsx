@@ -49,7 +49,10 @@ export function MobileNav() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isOpen])
 
-  const closeMenu = () => setOpenPathname(null)
+  const closeMenu = (restoreFocus = false) => {
+    setOpenPathname(null)
+    if (restoreFocus) triggerRef.current?.focus()
+  }
 
   return (
     <>
@@ -90,7 +93,7 @@ export function MobileNav() {
           className="fixed inset-0 z-20 bg-white/25 backdrop-blur-[2px] lg:hidden"
           onPointerDown={(event) => {
             if (event.target === event.currentTarget) {
-              closeMenu()
+              closeMenu(true)
             }
           }}
         >
@@ -110,7 +113,7 @@ export function MobileNav() {
                     isActive ? 'text-black' : 'text-muted'
                   }`
                 }
-                onClick={closeMenu}
+                onClick={() => closeMenu()}
               >
                 {item.label}
               </NavLink>

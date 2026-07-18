@@ -134,4 +134,64 @@ describe('Aethera routes', () => {
       }),
     ).toBeInTheDocument()
   })
+
+  it('focuses the new main landmark and scrolls to the top after navigation', () => {
+    vi.mocked(window.requestAnimationFrame).mockImplementation((callback) => {
+      callback(16)
+      return 1
+    })
+    vi.spyOn(window, 'scrollY', 'get').mockReturnValue(320)
+    renderRoute('/studio')
+
+    fireEvent.click(
+      within(
+        screen.getByRole('navigation', { name: 'Primary navigation' }),
+      ).getByRole('link', { name: 'About' }),
+    )
+
+    expect(screen.getByRole('main')).toHaveFocus()
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      top: 0,
+      left: 0,
+      behavior: 'auto',
+    })
+  })
+
+  it('scrolls a direct Journal hash target into view', () => {
+    vi.mocked(window.requestAnimationFrame).mockImplementation((callback) => {
+      callback(16)
+      return 1
+    })
+
+    renderRoute('/journal#designing-for-the-quiet-mind')
+
+    expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(1)
+  })
+
+  it('ignores a malformed hash without breaking the route', () => {
+    vi.mocked(window.requestAnimationFrame).mockImplementation((callback) => {
+      callback(16)
+      return 1
+    })
+
+    expect(() => renderRoute('/journal#%')).not.toThrow()
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+        name: 'Ideas for a more thoughtful digital life.',
+      }),
+    ).toBeInTheDocument()
+  })
+
+  it('returns focus after dismissing the mobile panel backdrop', async () => {
+    const user = userEvent.setup()
+    renderRoute('/studio')
+    const trigger = screen.getByRole('button', { name: 'Open navigation menu' })
+
+    await user.click(trigger)
+    fireEvent.pointerDown(screen.getByRole('dialog', { name: 'Site navigation' }))
+
+    expect(screen.queryByRole('dialog', { name: 'Site navigation' })).not.toBeInTheDocument()
+    expect(trigger).toHaveFocus()
+  })
 })

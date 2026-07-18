@@ -23,9 +23,9 @@ export function ReachUsPage() {
               <br /> not a pitch.
             </h2>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted">
-              We read every note ourselves and usually reply within two working
-              days. If there is a meaningful fit, we will begin with a focused
-              conversation—no deck required.
+              Every note leaves through your own email app, so you can review it
+              before sending. If there is a meaningful fit, we will begin with a
+              focused conversation—no deck required.
             </p>
 
             <dl className="mt-12 space-y-8 border-t border-black/10 pt-8 text-sm">

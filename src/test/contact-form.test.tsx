@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router'
 import { describe, expect, it } from 'vitest'
 
 import { AppRoutes } from '../App'
+import { contactLimits, validateContact } from '../lib/contact-form'
 
 function renderContactPage() {
   return render(
@@ -27,6 +28,10 @@ describe('Reach Us contact form', () => {
     expect(
       screen.getByText('Tell us a little more—at least 20 characters.'),
     ).toBeInTheDocument()
+
+    await user.type(screen.getByLabelText('Your name'), 'Mira')
+    expect(screen.queryByText('Please share your name.')).not.toBeInTheDocument()
+    expect(screen.getAllByRole('alert')).toHaveLength(3)
   })
 
   it('prepares an honest email draft after valid input', async () => {
@@ -52,5 +57,22 @@ describe('Reach Us contact form', () => {
 
     await user.click(screen.getByRole('button', { name: 'Start Over' }))
     expect(screen.getByRole('button', { name: 'Prepare My Note' })).toBeInTheDocument()
+    expect(screen.getByLabelText('Your name')).toHaveFocus()
+  })
+
+  it('rejects malformed email and bounds the generated draft fields', () => {
+    const errors = validateContact({
+      name: 'A'.repeat(contactLimits.name + 1),
+      email: 'a@@b.c',
+      projectType: 'unlisted project',
+      message: 'M'.repeat(contactLimits.message + 1),
+    })
+
+    expect(errors).toEqual({
+      name: `Keep your name under ${contactLimits.name} characters.`,
+      email: 'Enter a valid email address.',
+      projectType: 'Choose the kind of journey.',
+      message: `Keep your note under ${contactLimits.message} characters.`,
+    })
   })
 })

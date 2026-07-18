@@ -33,7 +33,14 @@ export function RouteEffects() {
 
       if (hash) {
         const targetId = getHashTargetId(hash)
-        if (targetId) document.getElementById(targetId)?.scrollIntoView()
+        if (targetId) {
+          const target = document.getElementById(targetId)
+          const expandable = target?.querySelector<HTMLDetailsElement>(
+            '[data-hash-expand]',
+          )
+          if (expandable) expandable.open = true
+          target?.scrollIntoView()
+        }
       } else if (routeChanged && window.scrollY !== 0) {
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
       }

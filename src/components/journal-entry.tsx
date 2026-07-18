@@ -38,7 +38,10 @@ export function JournalEntry({ entry, featured = false }: JournalEntryProps) {
           {entry.excerpt}
         </p>
 
-        <details className="group mt-8 border-t border-current/15 pt-2">
+        <details
+          data-hash-expand
+          className="group mt-8 border-t border-current/15 pt-2"
+        >
           <summary className="min-h-12 cursor-pointer list-none content-center text-sm underline decoration-current/30 underline-offset-4 transition-opacity duration-200 hover:opacity-60">
             <span className="group-open:hidden">Read reflection</span>
             <span className="hidden group-open:inline">Close reflection</span>

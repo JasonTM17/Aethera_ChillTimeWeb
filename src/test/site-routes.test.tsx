@@ -166,6 +166,11 @@ describe('Aethera routes', () => {
     renderRoute('/journal#designing-for-the-quiet-mind')
 
     expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(1)
+    expect(
+      document
+        .getElementById('designing-for-the-quiet-mind')
+        ?.querySelector('details'),
+    ).toHaveAttribute('open')
   })
 
   it('ignores a malformed hash without breaking the route', () => {

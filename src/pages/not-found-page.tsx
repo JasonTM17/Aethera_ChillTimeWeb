@@ -4,6 +4,7 @@ export function NotFoundPage() {
   return (
     <main
       id="main-content"
+      tabIndex={-1}
       className="mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-6 py-24 text-center sm:px-8"
     >
       <p className="animate-fade-rise text-xs font-medium tracking-[0.24em] text-muted uppercase">

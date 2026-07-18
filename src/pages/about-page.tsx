@@ -4,7 +4,7 @@ import { principles, processSteps } from '../lib/about-content'
 
 export function AboutPage() {
   return (
-    <main id="main-content" className="flex-1 overflow-hidden">
+    <main id="main-content" tabIndex={-1} className="flex-1 overflow-hidden">
       <EditorialPageIntro
         eyebrow="About · Aethera"
         title={

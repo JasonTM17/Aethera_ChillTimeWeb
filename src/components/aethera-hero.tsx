@@ -16,6 +16,7 @@ export function AetheraHero() {
 
       <main
         id="main-content"
+        tabIndex={-1}
         className="relative z-10 flex flex-col items-center justify-center px-6 pb-40 text-center"
         style={{ paddingTop: 'calc(8rem - 75px)' }}
       >

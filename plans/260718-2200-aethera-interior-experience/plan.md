@@ -3,7 +3,7 @@ title: Elevate Aethera interior experience
 description: >-
   Turn Aethera's four interior routes into distinct, content-rich editorial
   chapters while preserving the cinematic Home contract.
-status: in-progress
+status: completed
 priority: P2
 branch: main
 tags:
@@ -59,10 +59,10 @@ made from the existing Home landscape poster.
 | Phase | Name | Status |
 |-------|------|--------|
 | 1 | [Audit and design system](./phase-01-audit-and-design-system.md) | Completed |
-| 2 | [Build shared cinematic foundations](./phase-02-build-shared-cinematic-foundations.md) | In Progress |
-| 3 | [Redesign Studio and About](./phase-03-redesign-studio-and-about.md) | Pending |
-| 4 | [Redesign Journal and Reach Us](./phase-04-redesign-journal-and-reach-us.md) | Pending |
-| 5 | [Verify capture and deploy](./phase-05-verify-capture-and-deploy.md) | Pending |
+| 2 | [Build shared cinematic foundations](./phase-02-build-shared-cinematic-foundations.md) | Completed |
+| 3 | [Redesign Studio and About](./phase-03-redesign-studio-and-about.md) | Completed |
+| 4 | [Redesign Journal and Reach Us](./phase-04-redesign-journal-and-reach-us.md) | Completed |
+| 5 | [Verify capture and deploy](./phase-05-verify-capture-and-deploy.md) | Completed |
 
 ## Dependencies
 

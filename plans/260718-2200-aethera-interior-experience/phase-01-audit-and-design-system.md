@@ -49,10 +49,10 @@ route-specific factual notes.
 
 ## Success Criteria
 
-- [ ] Exact blank-fold cause documented with source references.
-- [ ] Page-by-page information architecture approved by the existing request.
-- [ ] Shared visual signature uses only verified local assets and brand tokens.
-- [ ] Risks to Home, navigation, hash links, form behavior, and tests identified.
+- [x] Exact blank-fold cause documented with source references.
+- [x] Page-by-page information architecture approved by the existing request.
+- [x] Shared visual signature uses only verified local assets and brand tokens.
+- [x] Risks to Home, navigation, hash links, form behavior, and tests identified.
 
 ## Risk Assessment
 

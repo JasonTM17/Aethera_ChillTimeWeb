@@ -1,10 +1,12 @@
 ---
 phase: 5
-title: "Verify capture and deploy"
-status: pending
-effort: ""
+title: Verify capture and deploy
+status: completed
+effort: ''
 priority: P1
-dependencies: [3, 4]
+dependencies:
+  - 3
+  - 4
 ---
 
 # Phase 5: Verify capture and deploy
@@ -48,11 +50,11 @@ of Git; store optimized evidence and reports in the plan report directory.
 
 ## Success Criteria
 
-- [ ] Automated quality gates pass without suppressions.
-- [ ] No route has horizontal overflow, first-fold dead space, or console errors.
-- [ ] Reduced motion receives immediate static content and no decorative motion.
-- [ ] GIFs are visually inspected and sized for practical review.
-- [ ] Production deployment is Ready and every route returns expected content.
+- [x] Automated quality gates pass without suppressions.
+- [x] No route has horizontal overflow, first-fold dead space, or console errors.
+- [x] Reduced motion receives immediate static content and no decorative motion.
+- [x] GIFs are visually inspected and sized for practical review.
+- [x] Production deployment is Ready and every route returns expected content.
 
 ## Risk Assessment
 

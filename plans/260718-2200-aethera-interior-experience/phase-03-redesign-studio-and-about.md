@@ -1,10 +1,11 @@
 ---
 phase: 3
-title: "Redesign Studio and About"
-status: pending
-effort: ""
+title: Redesign Studio and About
+status: completed
+effort: ''
 priority: P1
-dependencies: [2]
+dependencies:
+  - 2
 ---
 
 # Phase 3: Redesign Studio and About
@@ -53,10 +54,10 @@ and staggered reading order instead of repeated cards.
 
 ## Success Criteria
 
-- [ ] Studio never implies conceptual projects are commissioned client work.
-- [ ] About feels specific without invented people, dates, or results.
-- [ ] Each route has a distinct visual and semantic rhythm.
-- [ ] Page files remain composition-focused and below 200 lines.
+- [x] Studio never implies conceptual projects are commissioned client work.
+- [x] About feels specific without invented people, dates, or results.
+- [x] Each route has a distinct visual and semantic rhythm.
+- [x] Page files remain composition-focused and below 200 lines.
 
 ## Risk Assessment
 

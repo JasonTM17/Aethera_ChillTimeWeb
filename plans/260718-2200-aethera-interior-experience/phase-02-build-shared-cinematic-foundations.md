@@ -1,7 +1,7 @@
 ---
 phase: 2
 title: Build shared cinematic foundations
-status: in-progress
+status: completed
 effort: ''
 priority: P1
 dependencies:
@@ -49,10 +49,10 @@ forcing semantically different route sections into a universal card abstraction.
 
 ## Success Criteria
 
-- [ ] Essential H1 and description are visible on first paint.
-- [ ] Shared signature clearly relates interior routes to Home.
-- [ ] No original Home fade/video token changes.
-- [ ] Shared components remain small, typed, and route-agnostic.
+- [x] Essential H1 and description are visible on first paint.
+- [x] Shared signature clearly relates interior routes to Home.
+- [x] No original Home fade/video token changes.
+- [x] Shared components remain small, typed, and route-agnostic.
 
 ## Risk Assessment
 

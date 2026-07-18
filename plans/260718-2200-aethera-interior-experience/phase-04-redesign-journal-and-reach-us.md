@@ -1,10 +1,11 @@
 ---
 phase: 4
-title: "Redesign Journal and Reach Us"
-status: pending
-effort: ""
+title: Redesign Journal and Reach Us
+status: completed
+effort: ''
 priority: P1
-dependencies: [2]
+dependencies:
+  - 2
 ---
 
 # Phase 4: Redesign Journal and Reach Us
@@ -55,10 +56,10 @@ without changing its public behavior or accessible names.
 
 ## Success Criteria
 
-- [ ] Direct Journal hashes scroll to the correct synchronous article.
-- [ ] Native details remain keyboard-accessible and readable.
-- [ ] Form still creates but never sends or stores an email draft.
-- [ ] Reach Us contains no duplicate journey CTA or unverified response promise.
+- [x] Direct Journal hashes scroll to the correct synchronous article.
+- [x] Native details remain keyboard-accessible and readable.
+- [x] Form still creates but never sends or stores an email draft.
+- [x] Reach Us contains no duplicate journey CTA or unverified response promise.
 
 ## Risk Assessment
 

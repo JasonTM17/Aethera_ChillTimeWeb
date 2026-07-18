@@ -1,0 +1,9 @@
+.agents/
+.claude/
+.codex/
+plans/
+docs/
+coverage/
+AGENTS.md
+CLAUDE.md
+*.log

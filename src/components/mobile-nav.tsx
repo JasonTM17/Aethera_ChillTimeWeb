@@ -109,8 +109,10 @@ export function MobileNav() {
                 to={item.href}
                 end={item.href === '/'}
                 className={({ isActive }) =>
-                  `flex min-h-11 items-center rounded-2xl px-4 text-sm transition-colors duration-200 hover:bg-black/5 hover:text-black ${
-                    isActive ? 'text-black' : 'text-muted'
+                  `relative flex min-h-11 items-center rounded-2xl px-4 text-sm transition-colors duration-200 after:absolute after:right-5 after:size-1.5 after:rounded-full after:bg-black after:transition-transform after:duration-200 hover:bg-black/5 hover:text-black ${
+                    isActive
+                      ? 'bg-black/[0.035] text-black after:scale-100'
+                      : 'text-muted after:scale-0'
                   }`
                 }
                 onClick={() => closeMenu()}

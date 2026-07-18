@@ -37,8 +37,10 @@ export function SiteHeader() {
               to={item.href}
               end={item.href === '/'}
               className={({ isActive }) =>
-                `min-h-11 content-center text-sm transition-colors duration-200 hover:text-black ${
-                  isActive ? 'text-black' : 'text-muted'
+                `relative min-h-11 content-center text-sm transition-colors duration-200 after:absolute after:right-0 after:bottom-1 after:left-0 after:h-px after:origin-left after:bg-black after:transition-transform after:duration-200 hover:text-black ${
+                  isActive
+                    ? 'text-black after:scale-x-100'
+                    : 'text-muted after:scale-x-0'
                 }`
               }
             >

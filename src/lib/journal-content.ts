@@ -1,3 +1,21 @@
+export const journalHorizon = {
+  index: 'Field 03',
+  label: 'Reading ledger',
+  note: 'Studio notes on the invisible decisions behind calm, useful digital places. Written to clarify the work—not to feed a publishing machine.',
+  imagePosition: '76% 67%',
+  facts: [
+    { label: 'Format', value: 'Reflections and field notes' },
+    { label: 'Themes', value: 'Attention · Craft · Technology' },
+  ],
+} as const
+
+export const journalThemes = [
+  'Design practice',
+  'Creative direction',
+  'Product thinking',
+  'Studio notes',
+] as const
+
 export const journalEntries = [
   {
     slug: 'designing-for-the-quiet-mind',
@@ -11,6 +29,7 @@ export const journalEntries = [
     body: [
       'Quiet design begins long before color, type, or spacing. It begins with a decision about what deserves the user’s attention—and an equal willingness to remove what does not.',
       'The work is not to make an experience feel sparse. It is to make its meaning feel immediate. Hierarchy, rhythm, language, and motion should point in the same direction, so people spend less energy interpreting the interface and more energy doing what brought them there.',
+      'Calm is therefore not a visual style. It is evidence that a team has made the difficult decisions early enough for the interface to become generous.',
     ],
   },
   {
@@ -25,6 +44,7 @@ export const journalEntries = [
     body: [
       'Every product contains more possible moves than it should make. A distinctive experience comes from choosing a small number of gestures and repeating them with conviction.',
       'Constraints create a center of gravity. They help a team decide faster, give the product a recognizable voice, and protect it from the slow accumulation of choices that do not belong together.',
+      'The useful question is not “Can we add this?” but “Does this make the central idea easier to feel, understand, or use?”',
     ],
   },
   {
@@ -39,6 +59,7 @@ export const journalEntries = [
     body: [
       'Engagement is easy to count, which makes it tempting to treat more time as more value. But many useful products succeed by shortening the distance between intention and outcome.',
       'Designing for disappearance changes the questions we ask. Instead of “How do we keep people here?” we can ask “What would let them leave with confidence?” That shift creates clearer flows, gentler reminders, and products people trust enough to return to when they truly need them.',
+      'A product can remain memorable without remaining open. The memory comes from how clearly it helped, not how insistently it called people back.',
     ],
   },
   {
@@ -53,6 +74,9 @@ export const journalEntries = [
     body: [
       'We begin by listening for tension: the gap between what a team says it wants to make and the change it hopes people will feel. That tension usually contains the real brief.',
       'A good beginning makes later decisions lighter. Once the shared truth is named, strategy becomes a boundary, design becomes an expression of intent, and craft can deepen instead of decorate.',
+      'The ritual is simple: name what must change, what must remain true, and what the work should make possible. Everything else can follow.',
     ],
   },
 ] as const
+
+export type JournalEntryContent = (typeof journalEntries)[number]

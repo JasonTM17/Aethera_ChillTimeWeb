@@ -14,6 +14,7 @@ export const journalThemes = [
   'Creative direction',
   'Product thinking',
   'Studio notes',
+  'Humane technology',
 ] as const
 
 export const journalEntries = [

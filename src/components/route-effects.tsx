@@ -18,7 +18,7 @@ function getHashTargetId(hash: string) {
 }
 
 export function RouteEffects() {
-  const { pathname, hash } = useLocation()
+  const { pathname, hash, key } = useLocation()
   const previousPathname = useRef(pathname)
 
   useEffect(() => {
@@ -33,13 +33,17 @@ export function RouteEffects() {
 
       if (hash) {
         const targetId = getHashTargetId(hash)
-        if (targetId) {
-          const target = document.getElementById(targetId)
+        const target = targetId ? document.getElementById(targetId) : null
+
+        if (target) {
           const expandable = target?.querySelector<HTMLDetailsElement>(
             '[data-hash-expand]',
           )
           if (expandable) expandable.open = true
-          target?.scrollIntoView()
+          target.scrollIntoView()
+          target.focus({ preventScroll: true })
+        } else if (routeChanged && window.scrollY !== 0) {
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
         }
       } else if (routeChanged && window.scrollY !== 0) {
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
@@ -49,7 +53,7 @@ export function RouteEffects() {
     })
 
     return () => window.cancelAnimationFrame(animationFrameId)
-  }, [hash, pathname])
+  }, [hash, key, pathname])
 
   return null
 }

@@ -1,7 +1,9 @@
 import { ContactRail } from '../components/contact-rail'
 import { EditorialPageIntro } from '../components/editorial-page-intro'
 import { HorizonLedger } from '../components/horizon-ledger'
+import { JournalFieldNotes } from '../components/journal-field-notes'
 import { JournalIndex } from '../components/journal-index'
+import { JournalReadingPaths } from '../components/journal-reading-paths'
 import { journalHorizon } from '../lib/journal-content'
 
 export function JournalPage() {
@@ -20,7 +22,9 @@ export function JournalPage() {
       />
 
       <HorizonLedger {...journalHorizon} />
+      <JournalReadingPaths />
       <JournalIndex />
+      <JournalFieldNotes />
 
       <ContactRail
         eyebrow="Continue the conversation"

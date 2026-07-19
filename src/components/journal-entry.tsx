@@ -16,17 +16,17 @@ export function JournalEntry({ entry, featured = false }: JournalEntryProps) {
       }
     >
       <div>
-        <span className={`text-xs ${featured ? 'text-white/45' : 'text-muted'}`}>
+        <span className={`text-xs ${featured ? 'text-white/65' : 'text-muted'}`}>
           {entry.number}
         </span>
       </div>
 
       <div className={featured ? 'mt-8 lg:mt-0' : 'mt-4 md:mt-0'}>
-        <p className={`text-xs tracking-[0.14em] uppercase ${featured ? 'text-white/55' : 'text-muted'}`}>
+        <p className={`text-xs tracking-[0.14em] uppercase ${featured ? 'text-white/70' : 'text-muted'}`}>
           {entry.category}
         </p>
-        <p className={`mt-3 text-xs ${featured ? 'text-white/45' : 'text-muted'}`}>
-          {entry.date}<br />{entry.readTime}
+        <p className={`mt-3 text-xs ${featured ? 'text-white/65' : 'text-muted'}`}>
+          <time dateTime={entry.dateTime}>{entry.date}</time><br />{entry.readTime}
         </p>
       </div>
 
@@ -34,7 +34,7 @@ export function JournalEntry({ entry, featured = false }: JournalEntryProps) {
         <h3 className={`text-balance font-display leading-[1.02] tracking-[-1.2px] ${featured ? 'text-5xl text-white sm:text-7xl' : 'text-4xl text-black sm:text-5xl'}`}>
           {entry.title}
         </h3>
-        <p className={`mt-6 max-w-2xl text-sm leading-relaxed ${featured ? 'text-white/60' : 'text-muted'}`}>
+        <p className={`mt-6 max-w-2xl text-base leading-relaxed ${featured ? 'text-white/75' : 'text-muted'}`}>
           {entry.excerpt}
         </p>
 
@@ -46,7 +46,7 @@ export function JournalEntry({ entry, featured = false }: JournalEntryProps) {
             <span className="group-open:hidden">Read reflection</span>
             <span className="hidden group-open:inline">Close reflection</span>
           </summary>
-          <div className={`mt-5 max-w-2xl space-y-5 text-sm leading-relaxed ${featured ? 'text-white/70' : 'text-muted'}`}>
+          <div className={`mt-5 max-w-[68ch] space-y-5 text-base leading-[1.8] ${featured ? 'text-white/80' : 'text-muted'}`}>
             {entry.body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}

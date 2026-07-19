@@ -33,7 +33,7 @@ The About and Journal enrichment is implemented, the repository showcase media i
 - Three thematic reading paths using shareable `/journal#<slug>` links.
 - Direct-load, repeated, and same-page hash behavior that opens the target native `details` element and focuses its labelled article.
 - Four clearly undated field notes in a separate non-interactive layer.
-- Safe handling for malformed or missing hashes, including top restoration on a new route.
+- Safe handling for malformed or missing hashes, including a top reset on a new route.
 
 ### Repository and Deployment
 

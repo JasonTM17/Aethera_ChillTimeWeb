@@ -47,7 +47,7 @@ Aethera is a static React single-page application with five public routes and a 
 - Interior routes render through `SiteLayout` with `SiteHeader` and `SiteFooter`.
 - `EditorialPageIntro` and `HorizonLedger` establish the common opening rhythm.
 - `EditorialSectionHeading` and `ContactRail` are shared primitives; route bodies remain structurally distinct.
-- `RouteEffects` owns titles, route focus, top scroll restoration, and Journal hash handling.
+- `RouteEffects` owns titles, route focus, top reset for new routes, and Journal hash handling.
 
 Editorial content stays outside page markup in `src/lib/studio-content.ts`, `about-content.ts`, `journal-content.ts`, and `reach-us-content.ts`. Shared route, navigation, CTA, and email values live in `src/lib/site-content.ts`.
 

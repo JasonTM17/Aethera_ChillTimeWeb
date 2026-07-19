@@ -30,7 +30,7 @@ Production: [https://aethera-chill-time-web.vercel.app](https://aethera-chill-ti
 - Five client-side routes plus a branded not-found state.
 - Route-aware desktop and mobile navigation.
 - Fullscreen Home hero with the established copy, geometry, manual video loop, and Home-only lifecycle cleanup.
-- Shared interior shell, route titles, route focus, top scroll restoration, skip navigation, and responsive Horizon Ledger.
+- Shared interior shell, route titles, route focus, top reset on new routes, skip navigation, and responsive Horizon Ledger.
 
 ### About
 

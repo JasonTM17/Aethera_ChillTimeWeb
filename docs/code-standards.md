@@ -14,7 +14,7 @@
 - Use Tailwind utilities for component layout and state.
 - Define global tokens and keyframes in `src/styles/theme.css`.
 - Import fonts only through `src/styles/fonts.css`.
-- Preserve the white, black, and `#6F6F6F` editorial palette unless a product decision changes it.
+- Preserve the monochrome white, black, and `#6F6F6F` editorial core; use the existing landscape wash and error accent only where the documented interface needs them.
 - Avoid dynamic Tailwind class fragments that the scanner cannot detect.
 
 ## Accessibility

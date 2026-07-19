@@ -1,87 +1,134 @@
 # Codebase Summary
 
+Refreshed 2026-07-19 from a Repomix snapshot and direct source review. The source files, tests, build configuration, and production origin were checked separately before documenting behavior.
+
+## Product Shape
+
+Aethera is a static React single-page application with five public routes and a branded client-side not-found state.
+
+| Route | Purpose |
+|---|---|
+| `/` | Cinematic Home hero with a manual video lifecycle |
+| `/studio` | Concept explorations, capabilities, and working models |
+| `/about` | Studio positioning, origin, manifesto, collaboration agreement, principles, process, and fit |
+| `/journal` | Seven expandable reflections, three reading paths, and four field notes |
+| `/reach-us` | Validated local email-draft flow and direct email fallback |
+| `*` | Branded recovery inside the shared interior shell |
+
 ## Entry and Configuration
 
 | Path | Responsibility |
 |---|---|
 | `index.html` | Document metadata and React mount point |
 | `src/main.tsx` | StrictMode root render |
-| `src/App.tsx` | BrowserRouter, five-route table, wildcard fallback, and testable `AppRoutes` |
+| `src/App.tsx` | BrowserRouter, route table, wildcard fallback, and testable `AppRoutes` |
 | `vite.config.ts` | React and Tailwind Vite plugins |
 | `vitest.config.ts` | jsdom setup, V8 coverage scope, and 80/70/80/80 thresholds |
-| `eslint.config.js` | TypeScript, React Hooks, and Fast Refresh lint rules |
+| `eslint.config.js` | TypeScript, React Hooks, and Fast Refresh rules |
+| `vercel.json` | `npm run build`, `dist/` output, and SPA rewrite |
+| `public/_redirects` | Netlify SPA history fallback |
 
 ## Source Areas
 
-| Directory | Responsibility |
+| Directory | Current role |
 |---|---|
-| `src/components/` | Shared shell, navigation, Horizon Ledger, editorial primitives, route sections, contact form, and Home video layer |
-| `src/pages/` | Thin compositions for Studio, About, Journal, Reach Us, and not-found recovery |
-| `src/hooks/` | Manual Home video lifecycle and live reduced-motion preference handling |
-| `src/lib/` | Typed editorial content plus pure contact normalization, validation, and mailto-draft helpers |
-| `src/styles/` | Font imports, palette, keyframes, 320px baseline, and reduced-motion rules |
-| `src/test/` | Home/video, routes/navigation, interior semantics, Journal hash, and contact interaction coverage |
-| `public/` | Local landscape poster and Netlify SPA fallback |
+| `src/components/` | 28 shared and route-specific React components |
+| `src/pages/` | Five composition-focused route pages |
+| `src/hooks/` | Home video lifecycle and live reduced-motion handling |
+| `src/lib/` | Typed editorial content and pure contact-form helpers |
+| `src/styles/` | Font imports, design tokens, motion, and global baseline |
+| `src/test/` | Six Vitest files covering routes, interior semantics, Journal navigation, contact, and video behavior |
+| `public/` | Landscape poster and Netlify fallback |
+| `assets/showcase/` | Repository-only screenshots and GIFs; not imported into the SPA |
 
-## Route Composition
+## Shared Runtime Structure
 
-- `/` renders `AetheraHero`, which owns `SiteHeader` and the Home-only cinematic video.
-- Interior routes render through `SiteLayout`, sharing `SiteHeader` and `SiteFooter`.
-- `/studio` composes the shared intro and Horizon Ledger with concept studies, capability/deliverable rows, working models, and a contact rail.
-- `/about` composes the shared foundation with positioning, manifesto, staggered principles, process outputs, fit signals, and a contact rail.
-- `/journal` composes the shared foundation with a featured reflection, chronological entry rows, native expandable bodies, and a contact rail.
-- `/reach-us` composes a compact intro and Horizon Ledger with first-note guidance, local draft form, next steps, and native FAQs.
-- Unknown paths render `NotFoundPage` inside the shared layout.
+- Home renders `AetheraHero` and owns the only video element.
+- Interior routes render through `SiteLayout` with `SiteHeader` and `SiteFooter`.
+- `EditorialPageIntro` and `HorizonLedger` establish the common opening rhythm.
+- `EditorialSectionHeading` and `ContactRail` are shared primitives; route bodies remain structurally distinct.
+- `RouteEffects` owns titles, route focus, top scroll restoration, and Journal hash handling.
 
-## Shared Interior Foundation
+Editorial content stays outside page markup in `src/lib/studio-content.ts`, `about-content.ts`, `journal-content.ts`, and `reach-us-content.ts`. Shared route, navigation, CTA, and email values live in `src/lib/site-content.ts`.
 
-`EditorialPageIntro` renders essential copy immediately; it does not hide the H1 or description behind arrival motion. `HorizonLedger` then reuses `/aethera-landscape-poster.webp` with a distinct crop and factual ledger for each route. `EditorialSectionHeading` and `ContactRail` share typography and action patterns while route-specific components preserve different reading rhythms.
+## About Dossier
 
-Content stays outside page markup in `src/lib/studio-content.ts`, `about-content.ts`, `journal-content.ts`, and `reach-us-content.ts`. Shared brand, route, CTA, and email values live in `src/lib/site-content.ts`.
+`AboutPage` composes this verified sequence:
 
-## Interaction Boundaries
+```text
+EditorialPageIntro
+  -> HorizonLedger
+  -> AboutPositioning
+  -> AboutOrigin
+  -> AboutManifesto
+  -> AboutWorkingAgreement
+  -> AboutPrinciples
+  -> AboutProcess
+  -> ContactRail
+```
 
-- Desktop and mobile navigation map the same typed collection through `NavLink`; active destinations receive `aria-current="page"`, a desktop underline, and a mobile dot marker.
-- `RouteEffects` updates titles and route focus. For a valid Journal hash, it decodes the article ID, opens the nested `data-hash-expand` details element, and scrolls the article into view.
-- Reach Us normalizes and validates `FormData`, then produces a URL-encoded `mailto:` link. There is no API request, backend, database, or browser-storage step.
-- `useCinematicVideoLoop` listens for `prefers-reduced-motion` changes. Reduced motion removes the remote MP4 source and keeps the local poster; normal motion uses the manual fade/restart loop.
-- The Horizon Ledger's supporting image wrapper uses the 320ms `horizon-arrive` motion, which collapses under reduced motion.
+`src/lib/about-content.ts` provides:
 
-## Verified Local Quality Snapshot
+- paired “Aethera is / is not” positioning;
+- a three-chapter origin framed as tension, choice, and measure;
+- a manifesto statement and supporting paragraphs;
+- four working agreements;
+- four principles with practical applications;
+- four process stages and three fit signals.
 
-Verified on 2026-07-18:
+The origin intentionally makes no founder, team-biography, or founding-date claim.
+
+## Journal Archive
+
+`src/lib/journal-content.ts` defines seven complete reflections, three thematic reading paths, and four undated field notes.
+
+- `JournalIndex` sorts a copy of the entry collection by numbered folio and features `007`.
+- Each `JournalEntry` is an `article` whose `id` is its stable slug.
+- Published display dates use semantic `<time dateTime="YYYY-MM-DD">` values.
+- Reflection bodies use native `details` and `summary`; no custom disclosure state is required.
+- `JournalReadingPaths` uses route links to `/journal#<slug>`.
+- `RouteEffects` safely decodes the hash, opens the target `[data-hash-expand]` disclosure, then scrolls the article into view.
+- Malformed percent encoding is ignored without breaking the route.
+- `JournalFieldNotes` is a non-interactive ordered list and labels every item “Undated studio note.”
+
+## Other Interaction Boundaries
+
+- Desktop and mobile navigation map the same typed route collection through NavLink and expose `aria-current="page"`.
+- Reach Us normalizes and validates FormData, then creates a URL-encoded `mailto:` draft. The site has no API, database, or browser-storage step.
+- `useCinematicVideoLoop` removes the remote MP4 source under reduced motion and restores it when the preference changes back.
+- Horizon Ledger arrival motion collapses under `prefers-reduced-motion`.
+
+## Verified Quality Snapshot
+
+Verified locally on 2026-07-19:
 
 | Check | Result |
 |---|---|
-| Vitest coverage run | 5 files passed; 34/34 tests passed |
-| Statements | 97.34% (257/264) |
-| Branches | 88.88% (152/171) |
-| Functions | 100% (96/96) |
-| Lines | 97.25% (248/255) |
-| Production build | Passed; TypeScript build and Vite production bundle completed |
-| Dependency audit | 0 vulnerabilities across all severities |
+| Vitest coverage run | 6 files passed; 35/35 tests passed |
+| Statements | 97.11% (269/277) |
+| Branches | 88.43% (153/173) |
+| Functions | 100% (106/106) |
+| Lines | 97.36% (259/266) |
+| Lint | Passed |
+| Production build | Passed; TypeScript and Vite completed |
+| Dependency audit | 0 vulnerabilities |
 
-## Production Release Snapshot
+## Production and Showcase
 
-Vercel deployment `dpl_6vJKp1qNNGr91MRDz4ExnrUPme6A` is Ready at the canonical [production alias](https://aethera-chill-time-web.vercel.app). The deployment-specific URL is [https://aethera-chill-time-r33ib2qyf-nguyensonbmt06-6377s-projects.vercel.app](https://aethera-chill-time-r33ib2qyf-nguyensonbmt06-6377s-projects.vercel.app); creation time was 2026-07-18 23:03:45 +07:00.
+The canonical production origin is [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app). On 2026-07-19 it returned HTTP 200 for Home, all four named interior routes, an unknown SPA path, and `/aethera-landscape-poster.webp`. The deployed JavaScript contained the enriched About origin and seven-reflection Journal content.
 
-- HTTP 200: `/`, `/studio`, `/about`, `/journal`, `/reach-us`, an unknown SPA path, and `/aethera-landscape-poster.webp`.
-- Responsive Chromium: no horizontal overflow at 1440px, 768px, or 375px.
-- Home media: exact configured CloudFront source, 14.041995-second duration, native loop disabled, and manual opacity fade/reset verified.
-- Reduced motion: initial load has no `src` or `currentSrc`; a live preference switch pauses playback and removes the source.
-- Interactions: Journal direct hash opens and scrolls; Reach invalid submit shows four alerts and focuses `#name`; mobile Escape restores trigger focus and the active marker remains visible.
-- Errors: console and page errors empty.
-- Vitals snapshot: TTFB 48.3ms, FCP 204ms, LCP 204ms, CLS 0.
+`assets/showcase/` contains nine PNG captures and two GIFs:
 
-Motion evidence: [Home cinematic loop](../plans/260718-2200-aethera-interior-experience/reports/home-cinematic-loop.gif), [interior pages tour](../plans/260718-2200-aethera-interior-experience/reports/interior-pages-tour.gif), and [mobile navigation tour](../plans/260718-2200-aethera-interior-experience/reports/mobile-navigation-tour.gif).
+- `home-cinematic-loop.gif`;
+- `interior-editorial-tour.gif`.
 
-## Generated Output
-
-`npm run build` creates ignored `dist/` output. Coverage output and dependencies are also ignored. Redesign QA evidence belongs under `plans/260718-2200-aethera-interior-experience/reports/`.
+The showcase folder documents the repository. Vite does not copy it into `dist/` because the application does not import those files.
 
 ## Related Documentation
 
+- [Project overview and PDR](./project-overview-pdr.md)
 - [Design guidelines](./design-guidelines.md)
 - [System architecture](./system-architecture.md)
-- [Project roadmap](./project-roadmap.md)
+- [Deployment guide](./deployment-guide.md)
 - [Production deployment](./deployment.md)
+- [Project roadmap](./project-roadmap.md)

@@ -2,75 +2,131 @@
 
 ## Runtime Shape
 
-The application is a static client-side React SPA. It has no server runtime, database, authentication, analytics, or persistence layer.
+The application is a static client-side React SPA. It has no server runtime, API, database, authentication, analytics, or persistence layer.
 
 ```text
 Browser request
   -> static index.html
   -> src/main.tsx
-  -> BrowserRouter / AppRoutes / RouteEffects
-      -> Home: AetheraHero + Home-only video lifecycle
-      -> Interior: SiteLayout -> route page -> SiteFooter
-      -> Unknown: NotFoundPage inside SiteLayout
+  -> BrowserRouter
+      -> RouteEffects
+      -> AppRoutes
+          -> Home: AetheraHero + Home-only video lifecycle
+          -> Interior: SiteLayout -> route page -> SiteFooter
+          -> Unknown: NotFoundPage inside SiteLayout
 ```
+
+Vercel and Netlify return `index.html` for direct client-route requests. React Router then resolves the route; an unknown path reaches the branded wildcard page.
 
 ## Routing and Shared Shell
 
-`AppRoutes` defines Home, Studio, About, Journal, Reach Us, and the wildcard fallback. `SiteHeader` and `MobileNav` read the same typed navigation collection. `NavLink` supplies the active-route semantics; desktop renders an active underline at `lg` and above, while the mobile dialog renders an active dot below `lg`.
+`AppRoutes` defines Home, Studio, About, Journal, Reach Us, and the wildcard fallback. `SiteHeader` and `MobileNav` read the same typed navigation collection. NavLink provides active-route semantics, rendered as a desktop underline or a mobile dot and background.
 
-`RouteEffects` centralizes document titles, new-route main focus, top scroll restoration, and Journal hash behavior. Vercel and Netlify fallback files route direct requests to `index.html`; other static hosts need the same history fallback.
+`RouteEffects` centralizes:
+
+- document titles;
+- focus on `#main-content` after pathname changes;
+- top scroll restoration when a new route has no hash;
+- Journal direct-hash and same-page hash behavior.
 
 ## Interior Composition
 
 ```text
 SiteLayout
   -> SiteHeader
-  -> route main
-      -> EditorialPageIntro (visible essential copy)
-      -> HorizonLedger (shared poster + route facts)
-      -> route-specific sections
+  -> Outlet
+      -> route main
+          -> EditorialPageIntro
+          -> HorizonLedger
+          -> route-specific sections
+          -> ContactRail or route-specific close
   -> SiteFooter
 ```
 
-Only the intro, Horizon Ledger, section-heading typography, contact rail, and site shell are shared. The route bodies remain deliberately different:
+Only the shell, intro, Horizon Ledger, section-heading typography, and contact rail are shared. Route bodies remain deliberately different.
 
-| Route | Components and content flow |
+| Route | Verified component flow |
 |---|---|
-| Studio | `StudioProjectList` -> `StudioCapabilityLedger` -> `ContactRail` |
-| About | `AboutPositioning` -> `AboutManifesto` -> `AboutPrinciples` -> `AboutProcess` -> `ContactRail` |
-| Journal | `JournalIndex` -> featured `JournalEntry` -> chronological entries -> `ContactRail` |
-| Reach Us | `ReachUsContactSection` -> `ContactForm` -> `ReachUsNextSteps` |
+| Studio | `StudioProjectList -> StudioCapabilityLedger -> ContactRail` |
+| About | `AboutPositioning -> AboutOrigin -> AboutManifesto -> AboutWorkingAgreement -> AboutPrinciples -> AboutProcess -> ContactRail` |
+| Journal | `JournalReadingPaths -> JournalIndex -> JournalFieldNotes -> ContactRail` |
+| Reach Us | `ReachUsContactSection -> ContactForm -> ReachUsNextSteps` |
 
-Typed route content lives in matching `src/lib/*-content.ts` modules. Page components stay composition-focused.
+Typed route content lives in matching `src/lib/*-content.ts` modules. Page files stay composition-focused.
 
-## Horizon Ledger and Motion
+## About Content Architecture
 
-`HorizonLedger` uses the local `public/aethera-landscape-poster.webp` on all four interior routes. Each route supplies its field index, label, note, two facts, and crop position. The image is decorative, dimensioned, and decoded asynchronously.
+`src/lib/about-content.ts` is the source of truth for the About dossier:
 
-Its supporting image wrapper alone receives `horizon-arrive`: a 320ms opacity/12px transform animation. `src/styles/theme.css` collapses animation and transition durations and disables smooth scrolling when reduced motion is requested. Essential intro copy remains visible independently of this effect.
+```text
+aboutPositioning
+aboutOrigin
+  -> 3 ordered chapters
+aboutManifesto
+workingAgreements
+  -> 4 agreements
+principles
+  -> 4 principles + practical applications
+processSteps
+  -> 4 stages + named outputs
+fitSignals
+  -> 3 fit checks
+```
 
-## Home Video Lifecycle
+The components map these immutable collections into semantic sections and ordered lists. No runtime fetch, CMS, founder record, or team model exists.
 
-`CinematicVideoLayer` owns the decorative media element. `useCinematicVideoLoop` owns playback, opacity, error, media-query, timer, and cleanup state.
+## Journal Content and Rendering
 
-1. Initial opacity is 0.
-2. RAF maps `currentTime / 0.5` during fade-in.
-3. RAF maps `(duration - currentTime) / 0.5` during fade-out.
-4. `ended` hides the video, waits 100ms, resets, then calls `play()`.
-5. Unmount removes listeners, pauses playback, and cancels RAF and timeout work.
-6. A live `MediaQueryList` change updates the mode while Home remains mounted. Reduced motion pauses and resets playback, omits the MP4 source, and shows the local poster; returning to normal motion restores playback.
+`src/lib/journal-content.ts` defines three compile-time collections:
+
+| Collection | Count | Rendering |
+|---|---:|---|
+| `journalEntries` | 7 | Expandable articles |
+| `journalReadingPaths` | 3 | Ordered groups of links to entry slugs |
+| `journalFieldNotes` | 4 | Undated, non-interactive ordered notes |
+
+`JournalIndex` clones and sorts entries by their zero-padded `number` in descending order. The highest number becomes the featured dark entry; the rest render as ledger rows.
+
+Each `JournalEntry` renders:
+
+- `article id={entry.slug}` as the stable link target;
+- category, numbered folio, reading time, and a semantic `time` element;
+- a native `details` element marked `data-hash-expand`;
+- a `summary` that switches between “Read reflection” and “Close reflection” through native open state;
+- three body paragraphs from typed content.
+
+Field notes do not render `time` because the content explicitly describes them as undated.
 
 ## Journal Hash Flow
 
 ```text
-/journal#<slug>
-  -> decode hash safely
-  -> find article[id=<slug>]
-  -> open descendant [data-hash-expand] details
+direct URL or reading-path Link
+  -> /journal#<slug>
+  -> RouteEffects sees pathname/hash
+  -> decodeURIComponent(hash.slice(1))
+  -> document.getElementById(slug)
+  -> open descendant [data-hash-expand]
   -> scroll article into view
 ```
 
-Entries render synchronously, so direct hashes can resolve on the first route effect. Malformed percent encoding returns no target instead of breaking the route. Native `details` remains keyboard-operable for manual expansion.
+The effect depends on both `pathname` and `hash`, so a reading-path link works without leaving the route. A decode failure returns `null`; the page remains usable. Native `details` remains keyboard-operable for manual expansion.
+
+## Horizon Ledger and Motion
+
+`HorizonLedger` uses `public/aethera-landscape-poster.webp` across all four interior routes. Each route supplies a field index, label, note, two facts, and crop position.
+
+Only its image wrapper receives `horizon-arrive`: 320ms from 0.6 opacity and 12px offset to the resting state. `src/styles/theme.css` collapses animation and transition durations and disables smooth scrolling when reduced motion is requested. Essential intro copy remains visible independently.
+
+## Home Video Lifecycle
+
+`CinematicVideoLayer` owns the decorative media element. `useCinematicVideoLoop` owns playback, opacity, media-query, timer, and cleanup state.
+
+1. Initial opacity is 0.
+2. RAF maps the first 0.5 seconds to fade-in.
+3. RAF maps the final 0.5 seconds to fade-out.
+4. `ended` hides the video, waits 100ms, resets time, then calls `play()`.
+5. Unmount removes listeners, pauses playback, and cancels RAF and timeout work.
+6. A live media-query change removes the source under reduced motion and restores it when normal motion returns.
 
 ## Reach Us Data Flow
 
@@ -79,29 +135,31 @@ Uncontrolled form fields
   -> FormData normalization
   -> pure validation and length bounds
   -> URL-encoded mailto draft
-  -> user's own email application
+  -> user's email application
 ```
 
-No form value is transmitted to a JavaScript service or stored by the site. The form focuses the first invalid field, focuses the prepared-draft confirmation after success, and offers both a direct email link and a start-over path.
+The website neither transmits nor stores form values. It focuses the first invalid field, focuses the prepared-draft confirmation after success, and offers direct email and start-over paths.
 
-## Production Runtime Verification
+## Build, Deployment, and Repository Media
 
-Vercel deployment `dpl_6vJKp1qNNGr91MRDz4ExnrUPme6A` is Ready and mapped to [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app). Its deployment-specific URL is [https://aethera-chill-time-r33ib2qyf-nguyensonbmt06-6377s-projects.vercel.app](https://aethera-chill-time-r33ib2qyf-nguyensonbmt06-6377s-projects.vercel.app). It was created on 2026-07-18 at 23:03:45 +07:00.
+`npm run build` runs TypeScript project compilation and Vite, producing ignored `dist/` output. Vercel serves that directory and applies the rewrite in `vercel.json`.
 
-The canonical origin returns HTTP 200 for Home, all four interior routes, an unknown SPA path, and the landscape WebP. Production Chromium also verified the runtime contracts described above: manual Home playback, initial and live reduced-motion source removal, Journal hash expansion, Reach validation focus, mobile active/focus behavior, responsive overflow safety at 1440/768/375, and no console or page errors.
+`assets/showcase/` contains nine screenshots and two GIFs for the repository presentation. These files are not imported by source code and therefore are not included in the Vite output. They document the product; they are not a runtime dependency.
 
-A single production navigation recorded TTFB 48.3ms, FCP 204ms, LCP 204ms, and CLS 0. Treat these as a snapshot rather than monitoring data. See the [production deployment record](./deployment.md) for HTTP details and motion evidence.
+The canonical deployment is [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app). Direct-route and enriched-content checks passed on 2026-07-19. See [Production deployment](./deployment.md) for the current gate results.
 
 ## Trust Boundaries
 
 - The remote Home MP4 and Google Fonts are external read-only resources.
-- User contact values remain local until the user chooses to send from an email client.
-- No HTML injection, user-defined route destination, secret, or privileged operation exists.
-- The canonical Vercel alias is public and verified; no custom domain is configured.
+- Contact values remain local until the user chooses to send from an email client.
+- Journal hashes select existing DOM IDs; malformed encoding is caught.
+- No HTML injection, user-defined external route destination, secret, or privileged operation exists in the SPA.
+- Repository showcase assets contain product captures only and are not part of application data flow.
 
 ## Related Documentation
 
+- [Project overview and PDR](./project-overview-pdr.md)
 - [Codebase summary](./codebase-summary.md)
 - [Design guidelines](./design-guidelines.md)
+- [Deployment guide](./deployment-guide.md)
 - [Project roadmap](./project-roadmap.md)
-- [Production deployment](./deployment.md)

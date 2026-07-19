@@ -6,114 +6,112 @@
 |---|---|
 | Provider | Vercel |
 | Project | `aethera-chill-time-web` |
-| Scope | `nguyensonbmt06-6377s-projects` |
-| Status | Ready |
-| Deployment ID | `dpl_6vJKp1qNNGr91MRDz4ExnrUPme6A` |
-| Canonical alias | [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app) |
-| Deployment URL | [https://aethera-chill-time-r33ib2qyf-nguyensonbmt06-6377s-projects.vercel.app](https://aethera-chill-time-r33ib2qyf-nguyensonbmt06-6377s-projects.vercel.app) |
-| Created | 2026-07-18 23:03:45 +07:00 |
+| Canonical URL | [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app) |
+| Deployment ID | `dpl_33UM5xBG3YU1sw2VRzpSeGpMsosC` |
+| Deployment URL | [aethera-chill-time-3higr2wah-nguyensonbmt06-6377s-projects.vercel.app](https://aethera-chill-time-3higr2wah-nguyensonbmt06-6377s-projects.vercel.app) |
+| Deployment status | Ready |
+| Created | 2026-07-19 08:29:53 +07:00 |
+| Application shape | Static React SPA |
+| Build output | `dist/` |
+| Runtime environment variables | None |
+| Current content check | About origin and seven-entry Journal present |
 
-The canonical alias serves the completed interior redesign. No custom domain is configured.
+The canonical URL is the durable production reference. The deployment-specific fields above preserve the exact release inspected for this record and should be refreshed after a later production deployment.
 
 ## Configuration
 
 `vercel.json` defines the production contract:
 
-- Build command: `npm run build`.
-- Output directory: `dist`.
-- Framework preset: explicit neutral configuration.
-- SPA fallback: every route rewrites to `/index.html`.
+- build command: `npm run build`;
+- output directory: `dist`;
+- framework preset: neutral;
+- rewrite: every request falls back to `/index.html`.
 
-No runtime or build-time environment variables are required. The Home experience depends on the configured Google Fonts import and CloudFront video URL being publicly reachable.
+No runtime or build-time environment variables are required. The full Home experience depends on Google Fonts and the configured CloudFront MP4 remaining publicly reachable.
+
+`public/_redirects` provides the equivalent `/* /index.html 200` rule for Netlify.
 
 ## Verified Quality Gates
 
-Verified before deployment on 2026-07-18:
+Verified locally on 2026-07-19:
 
 | Check | Result |
 |---|---|
 | Lint | Passed |
-| Vitest coverage run | 5 files passed; 34/34 tests passed |
-| Statement coverage | 97.34% |
-| Production build | TypeScript and Vite build passed |
+| Vitest coverage run | 6 files passed; 35/35 tests passed |
+| Statement coverage | 97.11% (269/277) |
+| Branch coverage | 88.43% (153/173) |
+| Function coverage | 100% (106/106) |
+| Line coverage | 97.36% (259/266) |
+| Production build | TypeScript and Vite passed |
 | Dependency audit | 0 vulnerabilities |
 
-## Deploy
+The configured coverage thresholds are 80% statements, 70% branches, 80% functions, and 80% lines.
 
-The repository is linked locally through the ignored `.vercel/project.json` file. Run the quality gates before production deployment:
+## Release Workflow
+
+Use Node.js 22.22 or newer and install from the checked-in lockfile. Before a production release, run:
 
 ```bash
-npm ci
 npm run lint
-npm run test:coverage
+npm run test:coverage -- --pool=threads --maxWorkers=1 --no-file-parallelism
 npm run build
 npm audit --audit-level=high
 vercel --prod
 ```
 
-For a fresh checkout, link the existing project before deploying:
-
-```bash
-vercel link --yes --scope nguyensonbmt06-6377s-projects --project aethera-chill-time-web
-vercel --prod --scope nguyensonbmt06-6377s-projects
-```
+The first four commands were rerun successfully for this documentation snapshot. `vercel --prod` requires an authenticated Vercel CLI and an existing project link. For a fresh checkout, run `vercel link` and select the existing `aethera-chill-time-web` project before deploying.
 
 ## HTTP Verification
 
-The canonical alias returned HTTP 200 for:
+Checked against the canonical origin on 2026-07-19:
 
 | Resource | Result |
 |---|---|
-| `/` | Home SPA shell |
-| `/studio` | Direct interior route |
-| `/about` | Direct interior route |
-| `/journal` | Direct interior route |
-| `/reach-us` | Direct interior route |
-| Unknown path | Same SPA shell as `/`; React renders not-found recovery |
-| `/aethera-landscape-poster.webp` | `image/webp` asset |
+| `/` | HTTP 200, SPA shell |
+| `/studio` | HTTP 200, direct client route |
+| `/about` | HTTP 200, direct client route |
+| `/journal` | HTTP 200, direct client route |
+| `/reach-us` | HTTP 200, direct client route |
+| `/beyond-the-map` | HTTP 200 shell; React renders branded recovery |
+| `/aethera-landscape-poster.webp` | HTTP 200, `image/webp` |
 
-## Production Browser Verification
+The deployed JavaScript bundle contains the current About origin copy, the seven-reflection Journal description, the newest reflection, and the field-notes section. This confirms the enriched route content is present without tying documentation to a transient bundle filename.
 
-Production Chromium QA confirmed:
+## Repository Showcase Evidence
 
-- no horizontal overflow at 1440px, 768px, or 375px;
-- Home loads the exact CloudFront URL configured in `src/lib/hero-content.ts`, reports a 14.041995-second duration, keeps native `loop` false, and performs the manual opacity fade/reset;
-- initial reduced motion has no `src` or `currentSrc`, and a live switch pauses playback and removes the source;
-- `/journal#designing-for-the-quiet-mind` opens the targeted details element and scrolls it into view;
-- an empty Reach Us submission renders four alerts and focuses `#name`;
-- the mobile dialog shows the active-route marker and restores trigger focus after Escape;
-- console and page errors remain empty.
+The current repository presentation uses files under `assets/showcase/`:
 
-## Performance Snapshot
+- [Home cinematic loop](../assets/showcase/home-cinematic-loop.gif)
+- [Interior editorial tour](../assets/showcase/interior-editorial-tour.gif)
+- [About dossier](../assets/showcase/about-dossier.png)
+- [Journal desktop](../assets/showcase/journal-desktop.png)
+- [Journal mobile](../assets/showcase/journal-mobile.png)
+- [Mobile navigation](../assets/showcase/mobile-navigation.png)
 
-One production Chromium navigation recorded:
+The folder contains nine PNGs and two GIFs. It is repository evidence, not a production asset directory; Vite does not copy unimported root assets into `dist/`.
 
-| Metric | Value |
-|---|---|
-| TTFB | 48.3ms |
-| FCP | 204ms |
-| LCP | 204ms |
-| CLS | 0 |
+## Operational Checks
 
-This is a point-in-time verification snapshot, not a sustained performance baseline or service-level objective.
-
-## Evidence
-
-- [Home cinematic loop](../plans/260718-2200-aethera-interior-experience/reports/home-cinematic-loop.gif)
-- [Interior pages tour](../plans/260718-2200-aethera-interior-experience/reports/interior-pages-tour.gif)
-- [Mobile navigation tour](../plans/260718-2200-aethera-interior-experience/reports/mobile-navigation-tour.gif)
-- [Earlier production baseline report](../plans/260718-1608-cinematic-aethera-hero/reports/deployment-report.md)
-
-## Custom Domain
-
-No custom domain is configured. Add one in Vercel Project Settings, preserve the generated `vercel.app` alias as a fallback, and repeat route/browser verification after DNS becomes active.
+- Confirm `hello@aethera.studio` is controlled and monitored, or update `siteContent.email` in `src/lib/site-content.ts`.
+- Confirm the remote MP4 permits production access and expected bandwidth.
+- Review whether remote Google Fonts meet the project’s privacy and performance policy.
+- Recheck direct routes, Journal hashes, mobile navigation, reduced motion, and the email-draft flow after every deployment.
+- Treat a custom domain as a separate DNS and ownership decision; keep the `vercel.app` URL as the fallback.
 
 ## Rollback
 
-There are no database migrations. In the Vercel dashboard, select a known-good deployment and promote it, or run:
+The site has no database migrations. Roll back through the Vercel dashboard, or use a known-good deployment URL or ID:
 
 ```bash
-vercel rollback <previous-deployment-url>
+vercel rollback <deployment-id-or-url>
 ```
 
-Confirm the public alias and all direct routes again after rollback.
+After rollback, verify the canonical URL, every direct route, and the About/Journal content again.
+
+## Related Documentation
+
+- [Deployment guide](./deployment-guide.md)
+- [System architecture](./system-architecture.md)
+- [Codebase summary](./codebase-summary.md)
+- [Project roadmap](./project-roadmap.md)

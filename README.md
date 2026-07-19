@@ -65,7 +65,7 @@ About reads like an annotated studio dossier; Journal behaves like a small indep
 - A strict white, black, and `#6F6F6F` palette lets typography, spacing, and imagery create hierarchy.
 - Responsive compositions are verified at 375, 768, and 1440 pixels rather than reduced to one repeated card grid.
 - Journal entries use native `<details>` disclosure, stable hashes, semantic `<time>` elements, and same-page reading paths.
-- The mobile menu is a true dialog layer with focus management, Escape dismissal, scroll locking, and an opaque surface.
+- The mobile menu is a true dialog layer with focus management, Escape dismissal, a trapped Tab cycle, and an opaque panel surface.
 - Route changes restore scroll position, move focus predictably, and update page metadata.
 - Reduced-motion visitors never receive the large MP4 source; they see the lightweight poster instead.
 

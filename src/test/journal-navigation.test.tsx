@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router'
 import { describe, expect, it, vi } from 'vitest'
 
 import { AppRoutes } from '../App'
+import { journalEntries, journalReadingPaths } from '../lib/journal-content'
 
 function renderRoute(route: string) {
   return render(
@@ -14,6 +15,18 @@ function renderRoute(route: string) {
 }
 
 describe('Journal navigation', () => {
+  it('keeps entry hashes unique and every reading-path target resolvable', () => {
+    const entrySlugs = journalEntries.map((entry) => entry.slug)
+    const entrySlugSet = new Set(entrySlugs)
+
+    expect(entrySlugSet.size).toBe(entrySlugs.length)
+    for (const path of journalReadingPaths) {
+      for (const slug of path.slugs) {
+        expect(entrySlugSet.has(slug)).toBe(true)
+      }
+    }
+  })
+
   it('scrolls a direct Journal hash target into view', () => {
     vi.mocked(window.requestAnimationFrame).mockImplementation((callback) => {
       callback(16)

@@ -1,8 +1,8 @@
 ---
 phase: 4
-title: "Build repository showcase"
-status: pending
-effort: "4h"
+title: Build repository showcase
+status: completed
+effort: 4h
 ---
 
 # Phase 4: Build repository showcase
@@ -38,11 +38,11 @@ Rewrite the repository landing experience as an accurate product showcase, suppo
 
 ## Success Criteria
 
-- [ ] README renders multiple current images and at least two working GIFs on GitHub.
-- [ ] Gallery includes Home, About, Journal, Studio, Reach Us, and mobile evidence.
-- [ ] All commands, route claims, test counts, coverage figures, and deployment links are current.
-- [ ] Captures correspond to the reviewed application code SHA; later commits contain docs, media, and plan material only.
-- [ ] Media is useful, legible, reasonably sized, and committed without stale duplicates in the showcase folder.
+- [x] README renders multiple current images and at least two working GIFs on GitHub.
+- [x] Gallery includes Home, About, Journal, Studio, Reach Us, and mobile evidence.
+- [x] All commands, route claims, test counts, coverage figures, and deployment links are current.
+- [x] Captures correspond to the reviewed application code SHA; later commits contain docs, media, and plan material only.
+- [x] Media is useful, legible, reasonably sized, and committed without stale duplicates in the showcase folder.
 
 ## Risks
 

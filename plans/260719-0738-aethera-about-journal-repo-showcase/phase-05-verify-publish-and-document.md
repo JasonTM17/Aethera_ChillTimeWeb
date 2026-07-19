@@ -1,8 +1,8 @@
 ---
 phase: 5
-title: "Verify publish and document"
-status: pending
-effort: "3h"
+title: Verify publish and document
+status: completed
+effort: 3h
 ---
 
 # Phase 5: Verify publish and document
@@ -38,11 +38,11 @@ Run the complete local and production quality gates, perform adversarial review,
 
 ## Success Criteria
 
-- [ ] All automated gates exit zero with fresh recorded figures.
-- [ ] Production routes and interaction contracts pass browser QA with no console/page errors.
-- [ ] Review has no unresolved critical or high findings.
-- [ ] Plan and docs match the shipped state; all phase checkboxes are complete.
-- [ ] GitHub About, README media, production homepage, pushed commits, and Vercel alias are verified remotely.
+- [x] All automated gates exit zero with fresh recorded figures.
+- [x] Production routes and interaction contracts pass browser QA with no console/page errors.
+- [x] Review has no unresolved critical or high findings.
+- [x] Plan and docs match the shipped state; all phase checkboxes are complete.
+- [x] GitHub About, README media, production homepage, pushed commits, and Vercel alias are verified remotely.
 
 ## Rollback
 

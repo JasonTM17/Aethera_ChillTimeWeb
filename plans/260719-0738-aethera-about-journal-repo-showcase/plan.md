@@ -3,7 +3,7 @@ title: 'Deepen Aethera About, Journal, and repository showcase'
 description: >-
   Deepen the About and Journal experiences, then turn the repository profile
   into an accurate visual showcase with current production evidence.
-status: in-progress
+status: completed
 priority: P1
 branch: main
 tags:
@@ -28,10 +28,10 @@ Enrich the two thinnest interior routes without changing Aethera's established i
 | Phase | Name | Status |
 |-------|------|--------|
 | 1 | [Audit and content architecture](./phase-01-audit-and-content-architecture.md) | Completed |
-| 2 | [Enrich About experience](./phase-02-enrich-about-experience.md) | In Progress |
-| 3 | [Expand Journal archive](./phase-03-expand-journal-archive.md) | Pending |
-| 4 | [Build repository showcase](./phase-04-build-repository-showcase.md) | Pending |
-| 5 | [Verify publish and document](./phase-05-verify-publish-and-document.md) | Pending |
+| 2 | [Enrich About experience](./phase-02-enrich-about-experience.md) | Completed |
+| 3 | [Expand Journal archive](./phase-03-expand-journal-archive.md) | Completed |
+| 4 | [Build repository showcase](./phase-04-build-repository-showcase.md) | Completed |
+| 5 | [Verify publish and document](./phase-05-verify-publish-and-document.md) | Completed |
 
 ## Dependencies
 

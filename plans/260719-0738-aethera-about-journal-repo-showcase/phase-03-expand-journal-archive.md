@@ -1,8 +1,8 @@
 ---
 phase: 3
-title: "Expand Journal archive"
-status: pending
-effort: "4h"
+title: Expand Journal archive
+status: completed
+effort: 4h
 ---
 
 # Phase 3: Expand Journal archive
@@ -28,7 +28,7 @@ Make Journal feel like a real studio archive: more substantive entries, curated 
 - Create: `src/components/journal-reading-paths.tsx`
 - Create: `src/components/journal-field-notes.tsx`
 - Modify: `src/test/interior-experience.test.tsx`
-- Modify: `src/test/site-routes.test.tsx`
+- Create: `src/test/journal-navigation.test.tsx`
 - Verify as an unchanged touchpoint: `src/components/route-effects.tsx`
 
 ## Implementation Steps
@@ -41,11 +41,11 @@ Make Journal feel like a real studio archive: more substantive entries, curated 
 
 ## Success Criteria
 
-- [ ] Journal contains seven complete reflections, three reading paths, and at least four desk notes.
-- [ ] Every hash is unique and direct links still open and scroll to the correct reflection.
-- [ ] A reading-path link updates the URL, opens its target details element, and leaves hash behavior centralized in `RouteEffects`.
-- [ ] All summaries/details remain keyboard-operable and touch targets remain usable.
-- [ ] The route feels curated and dense without turning into a generic blog grid.
+- [x] Journal contains seven complete reflections, three reading paths, and at least four desk notes.
+- [x] Every hash is unique and direct links still open and scroll to the correct reflection.
+- [x] A reading-path link updates the URL, opens its target details element, and leaves hash behavior centralized in `RouteEffects`.
+- [x] All summaries/details remain keyboard-operable and touch targets remain usable.
+- [x] The route feels curated and dense without turning into a generic blog grid.
 
 ## Risks
 

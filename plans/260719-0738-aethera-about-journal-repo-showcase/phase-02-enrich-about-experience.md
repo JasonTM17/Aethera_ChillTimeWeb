@@ -1,7 +1,7 @@
 ---
 phase: 2
 title: Enrich About experience
-status: in-progress
+status: completed
 effort: 4h
 ---
 
@@ -42,10 +42,10 @@ Turn About into a complete studio portrait with an origin narrative and concrete
 
 ## Success Criteria
 
-- [ ] About reads as a specific studio profile rather than a short brand statement.
-- [ ] New components stay under 200 lines and reuse existing typography/tokens.
-- [ ] Desktop and mobile layouts have no clipping, awkward empty bands, or inaccessible reading order.
-- [ ] Tests prove origin, collaboration, and existing process content render together.
+- [x] About reads as a specific studio profile rather than a short brand statement.
+- [x] New components stay under 200 lines and reuse existing typography/tokens.
+- [x] Desktop and mobile layouts have no clipping, awkward empty bands, or inaccessible reading order.
+- [x] Tests prove origin, collaboration, and existing process content render together.
 
 ## Risks
 

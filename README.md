@@ -120,11 +120,11 @@ npm audit --audit-level=high
 
 Current verified baseline:
 
-- 35 tests passing across 6 test files
-- 97.11% statement coverage
-- 88.43% branch coverage
+- 38 tests passing across 6 test files
+- 97.14% statement coverage
+- 88.82% branch coverage
 - 100% function coverage
-- 97.36% line coverage
+- 97.39% line coverage
 - zero high-severity npm audit findings
 
 ## Deployment

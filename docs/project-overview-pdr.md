@@ -48,8 +48,8 @@ Production: [https://aethera-chill-time-web.vercel.app](https://aethera-chill-ti
 - Provide four clearly undated, non-interactive field notes.
 - Use native `details`/`summary` for reflection bodies.
 - Use semantic `time` elements with ISO `dateTime` values for dated reflections.
-- On direct or same-page hash navigation, safely decode the slug, open the matching disclosure, and scroll its article into view.
-- Ignore malformed hashes without breaking the route.
+- On direct or same-page hash navigation, safely decode the slug, open the matching disclosure, scroll its labelled article into view, and move focus with it.
+- Reopen a manually closed current-hash reflection when its reading path is selected again; malformed or missing targets remain safe and reset a new route to the top.
 
 ### Reach Us
 
@@ -84,11 +84,11 @@ Verified locally on 2026-07-19:
 
 | Measure | Result |
 |---|---|
-| Tests | 35/35 passing across six files |
-| Statements | 97.11% |
-| Branches | 88.43% |
+| Tests | 38/38 passing across six files |
+| Statements | 97.14% |
+| Branches | 88.82% |
 | Functions | 100% |
-| Lines | 97.36% |
+| Lines | 97.39% |
 | Lint | Passed |
 | Production build | Passed |
 | Dependency audit | 0 vulnerabilities |
@@ -100,7 +100,7 @@ The canonical Vercel origin returned HTTP 200 for all named routes, an unknown S
 - All automated quality gates remain green.
 - Journal count remains seven until copy changes intentionally.
 - Every reading-path slug resolves to an existing entry.
-- Direct and same-page Journal hashes open the correct native disclosure.
+- Direct, repeated, and same-page Journal hashes open and focus the correct native disclosure target.
 - About retains origin, manifesto, working agreement, principles, process outputs, and fit signals together.
 - Repository showcase retains nine PNGs and two GIFs with valid relative paths.
 

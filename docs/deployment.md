@@ -7,10 +7,10 @@
 | Provider | Vercel |
 | Project | `aethera-chill-time-web` |
 | Canonical URL | [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app) |
-| Deployment ID | `dpl_33UM5xBG3YU1sw2VRzpSeGpMsosC` |
-| Deployment URL | [aethera-chill-time-3higr2wah-nguyensonbmt06-6377s-projects.vercel.app](https://aethera-chill-time-3higr2wah-nguyensonbmt06-6377s-projects.vercel.app) |
+| Deployment ID | `dpl_D45UjosvZRU2G6fxLs4B2kjuBeUc` |
+| Deployment URL | [aethera-chill-time-q17jdkj7i-nguyensonbmt06-6377s-projects.vercel.app](https://aethera-chill-time-q17jdkj7i-nguyensonbmt06-6377s-projects.vercel.app) |
 | Deployment status | Ready |
-| Created | 2026-07-19 08:29:53 +07:00 |
+| Created | 2026-07-19 09:38:56 +07:00 |
 | Application shape | Static React SPA |
 | Build output | `dist/` |
 | Runtime environment variables | None |
@@ -38,11 +38,11 @@ Verified locally on 2026-07-19:
 | Check | Result |
 |---|---|
 | Lint | Passed |
-| Vitest coverage run | 6 files passed; 35/35 tests passed |
-| Statement coverage | 97.11% (269/277) |
-| Branch coverage | 88.43% (153/173) |
+| Vitest coverage run | 6 files passed; 38/38 tests passed |
+| Statement coverage | 97.14% (272/280) |
+| Branch coverage | 88.82% (159/179) |
 | Function coverage | 100% (106/106) |
-| Line coverage | 97.36% (259/266) |
+| Line coverage | 97.39% (262/269) |
 | Production build | TypeScript and Vite passed |
 | Dependency audit | 0 vulnerabilities |
 

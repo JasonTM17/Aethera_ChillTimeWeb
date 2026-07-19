@@ -31,9 +31,9 @@ The About and Journal enrichment is implemented, the repository showcase media i
 - Seven complete reflections with stable article slugs.
 - Human-readable filing dates paired with semantic ISO `dateTime` values.
 - Three thematic reading paths using shareable `/journal#<slug>` links.
-- Direct-load and same-page hash behavior that opens the target native `details` element.
+- Direct-load, repeated, and same-page hash behavior that opens the target native `details` element and focuses its labelled article.
 - Four clearly undated field notes in a separate non-interactive layer.
-- Safe handling for malformed percent-encoded hashes.
+- Safe handling for malformed or missing hashes, including top restoration on a new route.
 
 ### Repository and Deployment
 
@@ -48,11 +48,11 @@ Verified on 2026-07-19:
 
 | Check | Result |
 |---|---|
-| Tests | 35/35 passed across six Vitest files |
-| Statements | 97.11% |
-| Branches | 88.43% |
+| Tests | 38/38 passed across six Vitest files |
+| Statements | 97.14% |
+| Branches | 88.82% |
 | Functions | 100% |
-| Lines | 97.36% |
+| Lines | 97.39% |
 | Lint | Passed |
 | Production build | Passed |
 | Dependency audit | 0 vulnerabilities |

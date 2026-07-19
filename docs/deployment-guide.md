@@ -36,7 +36,7 @@ npm run preview
 
 Deploy `dist/`. Do not deploy `src/`, `docs/`, plans, or repository showcase media as application source.
 
-The verified 2026-07-19 baseline is 35 passing tests across six files, with 97.11% statements, 88.43% branches, 100% functions, and 97.36% lines.
+The verified 2026-07-19 baseline is 38 passing tests across six files, with 97.14% statements, 88.82% branches, 100% functions, and 97.39% lines.
 
 ## SPA History Fallback
 

@@ -92,7 +92,7 @@ The current content counts—seven reflections, three paths, and four field note
 
 - Preserve one H1, one focusable `#main-content`, heading order, skip navigation, visible focus rings, and mobile focus containment on every route.
 - Decorative video and Ledger images remain hidden from assistive technology.
-- Journal hash handling must open `[data-hash-expand]` before scrolling. Malformed hashes must remain safe.
+- Journal hash handling must open `[data-hash-expand]` before scrolling, then focus the labelled article so keyboard and visual position stay aligned. Malformed or missing targets must remain safe and route changes fall back to the top.
 - Semantic dates require a human-readable label and machine-readable ISO `dateTime`.
 - Reach Us focuses the first invalid control and never claims to submit or store user data.
 
@@ -101,7 +101,7 @@ The current content counts—seven reflections, three paths, and four field note
 Curated repository media belongs in `assets/showcase/`.
 
 - Desktop captures use 1440 × 900; mobile captures use 375 × 812.
-- `home-cinematic-loop.gif` is 800 × 500.
+- `home-cinematic-loop.gif` is 720 × 450.
 - `interior-editorial-tour.gif` is 900 × 563.
 - Keep filenames descriptive and kebab-case.
 - Treat showcase files as repository documentation. Do not import them into the production SPA unless a product requirement changes.

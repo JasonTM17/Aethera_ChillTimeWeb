@@ -27,7 +27,7 @@ Vercel and Netlify return `index.html` for direct client-route requests. React R
 - document titles;
 - focus on `#main-content` after pathname changes;
 - top scroll restoration when a new route has no hash;
-- Journal direct-hash and same-page hash behavior.
+- Journal direct-hash, repeated-hash, and same-page hash behavior with synchronized focus.
 
 ## Interior Composition
 
@@ -107,9 +107,10 @@ direct URL or reading-path Link
   -> document.getElementById(slug)
   -> open descendant [data-hash-expand]
   -> scroll article into view
+  -> focus labelled article without a second scroll
 ```
 
-The effect depends on both `pathname` and `hash`, so a reading-path link works without leaving the route. A decode failure returns `null`; the page remains usable. Native `details` remains keyboard-operable for manual expansion.
+The effect depends on `pathname`, `hash`, and the router location `key`, so a reading-path link works without leaving the route and selecting the same current hash reopens a manually closed reflection. Each article has `tabIndex="-1"` and `aria-labelledby` so programmatic focus carries a meaningful name. A decode failure or missing target leaves the page usable and restores the top on a pathname change. Native `details` remains keyboard-operable for manual expansion.
 
 ## Horizon Ledger and Motion
 

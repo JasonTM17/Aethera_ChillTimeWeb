@@ -87,7 +87,7 @@ The origin intentionally makes no founder, team-biography, or founding-date clai
 - Published display dates use semantic `<time dateTime="YYYY-MM-DD">` values.
 - Reflection bodies use native `details` and `summary`; no custom disclosure state is required.
 - `JournalReadingPaths` uses route links to `/journal#<slug>`.
-- `RouteEffects` safely decodes the hash, opens the target `[data-hash-expand]` disclosure, then scrolls the article into view.
+- `RouteEffects` safely decodes the hash, opens the target `[data-hash-expand]` disclosure, scrolls it into view, and focuses its labelled article. A new location key lets the same reading-path link reopen a manually closed current target; unresolved hashes on a route change fall back to the top.
 - Malformed percent encoding is ignored without breaking the route.
 - `JournalFieldNotes` is a non-interactive ordered list and labels every item “Undated studio note.”
 
@@ -104,11 +104,11 @@ Verified locally on 2026-07-19:
 
 | Check | Result |
 |---|---|
-| Vitest coverage run | 6 files passed; 35/35 tests passed |
-| Statements | 97.11% (269/277) |
-| Branches | 88.43% (153/173) |
+| Vitest coverage run | 6 files passed; 38/38 tests passed |
+| Statements | 97.14% (272/280) |
+| Branches | 88.82% (159/179) |
 | Functions | 100% (106/106) |
-| Lines | 97.36% (259/266) |
+| Lines | 97.39% (262/269) |
 | Lint | Passed |
 | Production build | Passed; TypeScript and Vite completed |
 | Dependency audit | 0 vulnerabilities |

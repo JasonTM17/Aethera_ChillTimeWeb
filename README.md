@@ -62,11 +62,11 @@ About reads like an annotated studio dossier; Journal behaves like a small indep
 ## Design and interaction system
 
 - **Instrument Serif** carries the logo, headings, quotations, and expressive emphasis; **Inter** keeps navigation and body copy precise.
-- A strict white, black, and `#6F6F6F` palette lets typography, spacing, and imagery create hierarchy.
+- A monochrome core of white, black, and `#6F6F6F` lets typography and spacing lead, with restrained landscape-wash and validation accents where the experience needs them.
 - Responsive compositions are verified at 375, 768, and 1440 pixels rather than reduced to one repeated card grid.
 - Journal entries use native `<details>` disclosure, stable hashes, semantic `<time>` elements, and same-page reading paths.
 - The mobile menu is a true dialog layer with focus management, Escape dismissal, a trapped Tab cycle, and an opaque panel surface.
-- Route changes restore scroll position, move focus predictably, and update page metadata.
+- New routes reset to the top, valid hashes open and focus their labelled reflection, and every navigation updates page metadata predictably.
 - Reduced-motion visitors never receive the large MP4 source; they see the lightweight poster instead.
 
 ## Cinematic loop contract

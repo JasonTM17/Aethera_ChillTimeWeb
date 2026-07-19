@@ -6,6 +6,8 @@ The About and Journal enrichment is implemented, the repository showcase media i
 
 [https://aethera-chill-time-web.vercel.app](https://aethera-chill-time-web.vercel.app)
 
+The public GitHub repository now presents the same release through a populated About panel, the production homepage, focused topics, and a current image-led README on the default `main` branch.
+
 ## Complete
 
 ### Product Experience
@@ -39,6 +41,8 @@ The About and Journal enrichment is implemented, the repository showcase media i
 
 - Nine PNG captures under `assets/showcase/` spanning Home, Studio, About, Journal, Reach Us, and mobile navigation.
 - Two optimized GIFs demonstrating the cinematic Home and interior editorial flow.
+- GitHub About description, production homepage, nine focused topics, public visibility, and default branch `main` verified remotely.
+- GitHub-rendered README and raw PNG/GIF URLs verified after the non-force `main` publication.
 - Vercel and Netlify SPA fallback configuration.
 - Canonical production origin and direct-route HTTP verification.
 

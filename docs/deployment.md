@@ -91,6 +91,8 @@ The current repository presentation uses files under `assets/showcase/`:
 
 The folder contains nine PNGs and two GIFs. It is repository evidence, not a production asset directory; Vite does not copy unimported root assets into `dist/`.
 
+After the safe `main` publication on 2026-07-19, GitHub reported the repository as public with `main` as its default branch, the canonical Vercel URL as its homepage, a concise studio description, and nine focused topics. The rendered README loaded the current gallery, while direct raw requests returned HTTP 200 for the README, Home PNG, 720x450 Home GIF, and 900x563 interior GIF.
+
 ## Operational Checks
 
 - Confirm `hello@aethera.studio` is controlled and monitored, or update `siteContent.email` in `src/lib/site-content.ts`.

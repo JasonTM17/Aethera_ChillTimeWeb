@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router'
+import { Link, MemoryRouter } from 'react-router'
 import { describe, expect, it, vi } from 'vitest'
 
 import { AppRoutes } from '../App'
@@ -148,6 +148,30 @@ describe('Aethera routes', () => {
         screen.getByRole('navigation', { name: 'Primary navigation' }),
       ).getByRole('link', { name: 'About' }),
     )
+
+    expect(screen.getByRole('main')).toHaveFocus()
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      top: 0,
+      left: 0,
+      behavior: 'auto',
+    })
+  })
+
+  it('returns to the top when a route change has no valid hash target', () => {
+    vi.mocked(window.requestAnimationFrame).mockImplementation((callback) => {
+      callback(16)
+      return 1
+    })
+    vi.spyOn(window, 'scrollY', 'get').mockReturnValue(320)
+
+    render(
+      <MemoryRouter initialEntries={['/studio']}>
+        <Link to="/journal#missing-reflection">Open missing reflection</Link>
+        <AppRoutes />
+      </MemoryRouter>,
+    )
+
+    fireEvent.click(screen.getByRole('link', { name: 'Open missing reflection' }))
 
     expect(screen.getByRole('main')).toHaveFocus()
     expect(window.scrollTo).toHaveBeenCalledWith({

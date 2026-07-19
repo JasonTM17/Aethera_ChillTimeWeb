@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router'
 import { describe, expect, it, vi } from 'vitest'
@@ -41,6 +41,9 @@ describe('Journal navigation', () => {
         .getElementById('designing-for-the-quiet-mind')
         ?.querySelector('details'),
     ).toHaveAttribute('open')
+    expect(
+      document.getElementById('designing-for-the-quiet-mind'),
+    ).toHaveFocus()
   })
 
   it('opens a reading-path target after an in-page hash change', async () => {
@@ -62,7 +65,32 @@ describe('Journal navigation', () => {
 
     await waitFor(() => expect(expandable).toHaveAttribute('open'))
     expect(target).toBeInTheDocument()
+    expect(target).toHaveFocus()
     expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalled()
+  })
+
+  it('reopens a closed reflection when its current reading path is selected again', async () => {
+    const user = userEvent.setup()
+    vi.mocked(window.requestAnimationFrame).mockImplementation((callback) => {
+      callback(16)
+      return 1
+    })
+
+    renderRoute('/journal')
+
+    const link = screen.getByRole('link', { name: 'The interface as a host' })
+    const target = document.getElementById('the-interface-as-a-host')
+    const expandable = target?.querySelector('details')
+
+    await user.click(link)
+    await waitFor(() => expect(expandable).toHaveAttribute('open'))
+    if (!target) throw new Error('Expected reading-path target')
+    await user.click(within(target).getByText('Close reflection'))
+    expect(expandable).not.toHaveAttribute('open')
+
+    await user.click(link)
+    await waitFor(() => expect(expandable).toHaveAttribute('open'))
+    expect(target).toHaveFocus()
   })
 
   it('ignores a malformed hash without breaking the route', () => {

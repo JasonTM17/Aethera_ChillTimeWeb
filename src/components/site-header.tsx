@@ -8,7 +8,7 @@ const ctaClasses =
 
 export function SiteHeader() {
   return (
-    <header className="relative z-10 px-5 py-6 sm:px-8">
+    <header className="relative z-20 px-5 py-6 sm:px-8">
       <a
         href="#main-content"
         className="fixed top-3 left-3 z-50 -translate-y-24 rounded-full bg-black px-5 py-3 text-sm text-white transition-transform focus:translate-y-0"

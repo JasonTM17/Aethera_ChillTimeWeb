@@ -101,7 +101,7 @@ export function MobileNav() {
             ref={panelRef}
             id="mobile-navigation"
             aria-label="Mobile navigation"
-            className="absolute top-24 right-5 left-5 rounded-3xl border border-black/10 bg-white/85 p-3 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl"
+            className="absolute top-24 right-5 left-5 rounded-3xl border border-black/10 bg-white/95 p-3 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl"
           >
             {siteContent.navigation.map((item) => (
               <NavLink

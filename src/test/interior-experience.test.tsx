@@ -56,6 +56,20 @@ describe('interior experience', () => {
     expect(screen.getByRole('heading', { name: 'Aethera is not' })).toBeInTheDocument()
     expect(screen.getByText('Shared truth')).toBeInTheDocument()
     expect(screen.getByText('Launch rhythm and learning')).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', {
+        name: 'Built for the space between a strong idea and the world it must enter.',
+      }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', {
+        name: 'The work becomes shared before it becomes polished.',
+      }),
+    ).toBeInTheDocument()
+    expect(screen.getAllByText('Aethera brings')).toHaveLength(4)
+    expect(
+      screen.getByText('There is a meaningful problem beneath the feature list.'),
+    ).toBeInTheDocument()
   })
 
   it('opens Journal reflections without losing stable article identifiers', async () => {
@@ -69,7 +83,8 @@ describe('interior experience', () => {
 
     expect(article).toBeInTheDocument()
     expect(summary.closest('details')).toHaveAttribute('open')
-    expect(screen.getAllByText('Read reflection')).toHaveLength(4)
+    expect(screen.getAllByText('Read reflection')).toHaveLength(7)
+    expect(screen.getAllByText('Undated studio note')).toHaveLength(4)
   })
 
   it('makes the Reach Us privacy contract and next steps explicit', async () => {

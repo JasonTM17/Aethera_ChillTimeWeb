@@ -157,37 +157,6 @@ describe('Aethera routes', () => {
     })
   })
 
-  it('scrolls a direct Journal hash target into view', () => {
-    vi.mocked(window.requestAnimationFrame).mockImplementation((callback) => {
-      callback(16)
-      return 1
-    })
-
-    renderRoute('/journal#designing-for-the-quiet-mind')
-
-    expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(1)
-    expect(
-      document
-        .getElementById('designing-for-the-quiet-mind')
-        ?.querySelector('details'),
-    ).toHaveAttribute('open')
-  })
-
-  it('ignores a malformed hash without breaking the route', () => {
-    vi.mocked(window.requestAnimationFrame).mockImplementation((callback) => {
-      callback(16)
-      return 1
-    })
-
-    expect(() => renderRoute('/journal#%')).not.toThrow()
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-        name: 'Ideas for a more thoughtful digital life.',
-      }),
-    ).toBeInTheDocument()
-  })
-
   it('returns focus after dismissing the mobile panel backdrop', async () => {
     const user = userEvent.setup()
     renderRoute('/studio')

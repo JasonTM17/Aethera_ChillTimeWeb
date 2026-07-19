@@ -1,7 +1,9 @@
 import { AboutManifesto } from '../components/about-manifesto'
+import { AboutOrigin } from '../components/about-origin'
 import { AboutPositioning } from '../components/about-positioning'
 import { AboutPrinciples } from '../components/about-principles'
 import { AboutProcess } from '../components/about-process'
+import { AboutWorkingAgreement } from '../components/about-working-agreement'
 import { ContactRail } from '../components/contact-rail'
 import { EditorialPageIntro } from '../components/editorial-page-intro'
 import { HorizonLedger } from '../components/horizon-ledger'
@@ -24,7 +26,9 @@ export function AboutPage() {
 
       <HorizonLedger {...aboutHorizon} />
       <AboutPositioning />
+      <AboutOrigin />
       <AboutManifesto />
+      <AboutWorkingAgreement />
       <AboutPrinciples />
       <AboutProcess />
 

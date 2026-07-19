@@ -12,7 +12,7 @@ export function AboutPositioning() {
           description="Aethera is a close creative practice for work that needs a center, a system, and enough care to become real."
         />
 
-        <div className="mt-16 grid sm:mt-20 lg:grid-cols-2">
+        <div className="mt-16 grid sm:mt-20 md:grid-cols-2">
           <PositioningColumn
             title="Aethera is"
             items={aboutPositioning.is}
@@ -49,7 +49,7 @@ function PositioningColumn({ title, items, tone }: PositioningColumnProps) {
             <p className={`text-sm font-medium ${isDark ? 'text-white' : 'text-black'}`}>
               {item.title}
             </p>
-            <p className={`mt-3 max-w-md text-sm leading-relaxed ${isDark ? 'text-white/60' : 'text-muted'}`}>
+            <p className={`mt-3 max-w-md text-sm leading-relaxed ${isDark ? 'text-white/75' : 'text-black'}`}>
               {item.description}
             </p>
           </li>

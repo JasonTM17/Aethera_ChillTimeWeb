@@ -12,9 +12,9 @@ export function AboutProcess() {
           description="No handoff into the unknown. The same small senior team stays close from the first truth through the thing people can use."
         />
 
-        <ol className="mt-16 border-t border-black/10 lg:grid lg:grid-cols-4">
+        <ol className="mt-16 grid gap-px border-y border-black/10 bg-black/10 md:grid-cols-2 lg:grid-cols-4">
           {processSteps.map((step, index) => (
-            <li key={step.name} className="border-b border-black/10 py-8 lg:border-r lg:px-7 lg:last:border-r-0 lg:first:pl-0">
+            <li key={step.name} className="bg-white p-8">
               <span className="text-xs text-muted">0{index + 1}</span>
               <h3 className="mt-8 font-display text-3xl text-black">{step.name}</h3>
               <p className="mt-3 text-xs tracking-[0.12em] text-black uppercase">

@@ -24,9 +24,17 @@ export function AboutPrinciples() {
               <h3 className="font-display text-3xl leading-tight text-black sm:text-4xl">
                 {principle.title}
               </h3>
-              <p className="max-w-xl text-sm leading-relaxed text-muted">
-                {principle.description}
-              </p>
+              <div className="max-w-xl">
+                <p className="text-sm leading-relaxed text-muted">
+                  {principle.description}
+                </p>
+                <p className="mt-5 border-t border-black/10 pt-4 text-sm leading-relaxed text-black">
+                  <span className="mr-2 text-[0.68rem] font-medium tracking-[0.14em] text-muted uppercase">
+                    In practice
+                  </span>
+                  {principle.practice}
+                </p>
+              </div>
             </article>
           ))}
         </div>
